@@ -1,0 +1,23 @@
+/*居中对齐*/
+.commonHead {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: fixed;
+  top: 0rpx;
+  left: 0;
+  transition: all .3s;
+  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+}
+.commonHead_content {
+  width: 100%;
+  text-align: center;
+  font-size: 30rpx;
+}
+.commonHead_img{
+  width: 222rpx;
+  height: 70rpx;
+}

@@ -1,0 +1,140 @@
+.info {
+  position: relative;
+  padding-top: 30rpx;
+  padding-bottom: 40rpx;
+  border-radius: 8rpx 8rpx 4rpx 4rpx;
+}
+.info-list-box {
+  position: relative;
+  padding: 0 26rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+.info-list-box:first-child::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 28rpx;
+  bottom: 0;
+  width: 1rpx;
+  background-color: #dedede;
+  transform: scaleX(.5);
+}
+.list-title {
+  color: #3b3085;
+  font-weight: bold;
+}
+.info-list {
+  height: 420rpx;
+  color: #302866;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+.btn {
+  width: 100% !important;
+  margin: 20rpx 0;
+  padding: 20rpx;
+  background-color: #CA6FFF;
+  color: #fff;
+  font-weight: normal;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+}
+
+.tip {
+  position: absolute;
+  top: 100rpx;
+  left: 0;
+  width: 100%;
+  padding: 30rpx;
+  line-height: 60rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-family: '黑体';
+  font-weight: bold;
+  background-color: #EB5353;
+}
+.close-tip {
+  padding: 40rpx 20rpx;
+  color: #999
+}
+/* 弹窗 */
+.dialog-container {
+  position: relative;
+  z-index: 2;
+}
+.dialog-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.dialog-header {
+  position: relative;
+  margin-bottom: 30rpx;
+}
+.dialog-content {
+  height: 746rpx;
+}
+.icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: .5;
+}
+.dialog-form {
+  border-radius: 4rpx;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+.dialog-title {
+  margin: 20rpx 4rpx;
+  color: #fff;
+  font-size: 50rpx;
+  line-height: 70rpx;
+  font-weight: 600;
+  text-shadow: 0 3rpx 3rpx #b04aec;
+  font-family: '黑体';
+}
+.dialog-textarea {
+  width: 100%;
+  height: 162rpx;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  font-size: 28rpx;
+  text-align: left;
+  box-sizing: border-box;
+}
+.textarea-placeholder {
+  color: #3B3085;
+}
+.dialog-submit {
+  width: 100% !important;
+  padding: 10rpx;
+  color: #3B3085;
+  font-weight: bold;
+  font-size: 26rpx;
+  font-family: '黑体';
+  border-radius: 0;
+  line-height: 40rpx;
+  background-color: #F7E8FF;
+}
+.dialog-footer {
+  margin-top: 60rpx;
+}
+.dialog-btn {
+  width: 100% !important;
+  padding: 20rpx;
+  color: #3B3085;
+  font-weight: bold;
+  font-size: 26rpx;
+  font-family: '黑体';
+  border-radius: 0;
+  line-height: 40rpx;
+  background-color: #fff;
+}
+.button-hover {
+  opacity: 0.8;
+}

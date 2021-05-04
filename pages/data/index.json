@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "数据",
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "base": "./components/base/index",
+    "tabs": "./components/tabs/index",
+    "store": "./components/store/index",
+    "list": "./components/list/index",
+    "reply": "./components/reply/index"
+  }
+}

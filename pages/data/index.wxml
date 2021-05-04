@@ -1,0 +1,30 @@
+<!-- index.wxml -->
+<!-- 引入骨架屏模版  skeleton -->
+<mp-loading ext-class="loading-center" show="{{loading}}" type="dot-gray"/>
+<!-- 自定义顶部条 -->
+<custom custom-class="{{isBar ? 'bg-white' : ''}}" />
+<!-- 基本信息 -->
+<base class="view-base" info="{{info}}" />
+<!-- 数据展示 -->
+<view class="nav-tabs">
+  <tabs list="{{tabs}}" bind:change="onChangeActive">
+  </tabs>
+  <view class="tabs-content">
+    <block wx:for="{{tabs}}" wx:key="title">
+      <view hidden="{{!(active == index)}}">
+        <!-- 店铺详情 -->
+        <view wx:if="{{index === 0}}">
+          <store />
+        </view>
+        <!-- 出单详情 -->
+        <view wx:if="{{index === 1}}">
+          <list />
+        </view>
+        <!-- 评价回复 -->
+        <view wx:if="{{index === 2}}">
+          <reply />
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

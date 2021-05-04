@@ -1,0 +1,113 @@
+.userinfo {
+  position: relative;
+}
+.userinfo .bg{
+  width: 100%;
+  height: 358rpx;
+}
+.userinfo .box{
+  position: absolute;
+  top: 128rpx;
+  left: 32rpx;
+  right: 32rpx;
+}
+.userinfo .avatar{
+  display: inline-block;
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 36rpx;
+  border-radius: 60rpx;
+  vertical-align: top;
+  overflow: hidden;
+}
+.userinfo .name{
+  color: #ffffff;
+  font-size: 34rpx;
+  line-height: 56rpx;
+}
+.login-btn{
+  display: inline-block;
+  padding: 0;
+  font-size: 34rpx;
+  line-height: 84rpx;
+  background-color: transparent;
+  text-align: left;
+  font-family: '黑体';
+  color: #ffffff;
+}
+.login-btn::after{
+  display: none;
+}
+/* company */
+.company {
+  padding: 22rpx 36rpx;
+}
+.company .box {
+  position: relative;
+  height: 310rpx;
+  padding: 0 46rpx 60rpx;
+  margin-bottom: 40rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+.company .bind {
+  padding: 0 74rpx 0;
+}
+.company .bind::before {
+  content: '';
+  position: absolute;
+  top: -45rpx;
+  right: -44rpx;
+  width: 88rpx;
+  height: 88rpx;
+  background-color: #C361FB;
+  border-radius: 46rpx;
+}
+.company .bind::after {
+  content: '';
+  position: absolute;
+  top: 10rpx;
+  right: 8rpx;
+  width: 18rpx;
+  height: 8rpx;
+  border-left: 4rpx solid #fff;
+  border-bottom: 4rpx solid #fff;
+  transform: rotate(-45deg);
+}
+.company .logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 25rpx;
+  border-radius: 8rpx;
+}
+.company .info {
+  color: #3B3085;
+  font-size: 28rpx;
+}
+.company .input {
+  height: 40rpx;
+  margin-left: 30rpx;
+  padding: 0 10rpx;
+  font-size: 26rpx;
+  text-align: left;
+  border: 1rpx solid #e7e7e7;
+}
+.company .btn {
+  position: absolute;
+  bottom: 30rpx;
+  margin: 0 0 0 60rpx;
+  width: 140rpx !important;
+  padding: 10rpx;
+  color: #fff;
+  font-weight: bold;
+  font-size: 26rpx;
+  font-family: '黑体';
+  border-radius: 8rpx;
+  font-weight: normal;
+  line-height: 24rpx;
+  background-color: #ce7cfd;
+  box-shadow: 1rpx 4rpx 8rpx rgba(212, 155, 245, 0.63);
+}
+.button-hover {
+  opacity: 0.8;
+}

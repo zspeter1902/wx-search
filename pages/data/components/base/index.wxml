@@ -1,0 +1,12 @@
+<!--pages/data/components/base/index.wxml-->
+<view class="base">
+  <image class="bg" src="/images/bg.png" mode="widthFix"></image>
+  <view class="base-box df ai-center">
+    <image class="logo" src="{{info.img}}" mode="aspectFit">
+    </image>
+    <view class="brand-info">
+      <view class="brand-name ellipsis">{{info.brandName}}</view>
+      <view class="brand-time">时间：{{info.time}}</view>
+    </view>
+  </view>
+</view>

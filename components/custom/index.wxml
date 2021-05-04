@@ -1,0 +1,6 @@
+<!-- pages/list/components/custom/index.wxml -->
+<view class='commonHead custom-class' style="padding-top: {{statusBarHeight + 5}}px">
+  <view class='commonHead_content'>
+    <image class="commonHead_img" src="../../images/logo.png" mode="aspectFit" />
+  </view>
+</view>

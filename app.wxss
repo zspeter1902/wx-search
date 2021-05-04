@@ -1,0 +1,166 @@
+@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+page{
+  position: relative;
+  background-color: #f2f2f2;
+}
+page::after {
+  content: '';
+  position: fixed;
+  bottom: 1px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #dedede;
+  transform-origin: center bottom;
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+.sk{
+  height: 100%;
+}
+/**app.wxss**/
+view,text{
+  box-sizing:border-box;
+}
+image {
+  vertical-align: middle;
+}
+.navigator-hover{
+  opacity: 0.8;
+  background-color: transparent;
+}
+::-webkit-scrollbar {
+  display:none;
+  width:0;
+  height:0;
+  color:transparent;
+}
+.weui-half-screen-dialog__bd {
+  -webkit-overflow-scrolling: touch
+}
+/*color*/
+.mainColor{color:#FF8F3F;}
+
+.bg-mainColor{background-color:#FF8F3F;}
+.bg-white{background-color: #fff;}
+.bg-gray {background-color: #f5f5f5;}
+
+.text-left {
+  text-align: left;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.por{
+  position: relative;
+}
+.inline-block{
+  display: inline-block;
+}
+.align-middle {
+  vertical-align: middle;
+}
+.ovh{
+  overflow: hidden
+}
+.ellipsis{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.df{
+	display: -webkit-flex;  /* 新版本语法: Chrome 21+ */
+    display: flex;          /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+.df-fixed{
+  flex: 0 0 auto;
+}
+.df-auto{
+  flex: 1;
+}
+.jc-start{
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+.jc-end{
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+.jc-center{
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+.jc-between{
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.jc-around{
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+.ai-start{
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+.ai-end{
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+.ai-center{
+  -webkit-align-items: center;
+  align-items: center;
+}
+.ai-baseline{
+  -webkit-align-items: baseline;
+  align-items: baseline;
+}
+.ai-stretch{
+  -webkit-align-items: stretch;
+  align-items: stretch;
+}
+.ac-center{
+  align-content: center
+}
+.fw-wrap{
+  flex-wrap: wrap;
+  -webkit-flex-wrap:wrap;
+}
+.flex-column{
+  flex-direction: column;
+}
+.flex-row {
+  flex-direction: row;
+}
+/* 线 */
+.border-bottom{
+  position: relative;
+}
+.border-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #dedede;
+  transform-origin: center bottom;
+  transform: scaleY(0.5);
+  z-index: 2;
+}
+/* loading */
+.loading {
+  margin: 20rpx auto;
+}
+
+.loading-center {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  z-index: 3000;
+}

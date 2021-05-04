@@ -1,0 +1,41 @@
+<z-title title="门店店铺评价信息" button="{{true}}" switch="{{switch}}" bind:switch="onSwitch" />
+<view class="info bg-white df text-center">
+  <view wx:if="{{switch}}" class="info-list-box df-auto">
+    <view class="list-title">美团</view>
+    <view class="info-list df flex-column jc-center">
+      <text>{{ lists.auto }}</text>
+      <text>{{ lists.text }}</text>
+    </view>
+  </view>
+  <view wx:if="{{switch}}" class="info-list-box df-auto">
+    <view class="list-title">饿了么</view>
+    <view class="info-list df flex-column jc-center">
+      <text>{{ lists2.auto }}</text>
+      <text>{{ lists2.text }}</text>
+    </view>
+  </view>
+  <view class="tip" wx:if="{{isTip}}">您的店铺已掉线，请联系您的运营组</view>
+  <view wx:if="{{!switch}}" class="df-auto close-tip">自动回评功能已关闭</view>
+</view>
+<button class="btn" hover-class="button-hover" bind:tap="openReply">设置评价回复内容</button>
+<!-- 弹出框 -->
+<mp-dialog ext-class="dialog" show="{{dialogShow}}">
+  <image class="dialog-bg" src="/images/dialog_bg2.png" mode="aspectFill"/>
+  <view class="dialog-container">
+    <view class="dialog-header text-left">
+      <text class="dialog-title">回复内容设置</text>
+      <mp-icon class="icon-close" icon="close" color="white" size="{{24}}" bind:tap="onClose"></mp-icon>
+    </view>
+    <scroll-view class="dialog-content" scroll-y>
+      <view class="dialog-form" wx:for="{{10}}">
+        <mp-form id="form{{index}}" rules="{{rules}}" models="{{formData}}">
+          <textarea bindinput="formInputChange" data-field="content" class="dialog-textarea" maxlength="{{240}}" placeholder="输入内容"/>
+          <button class="dialog-submit" bindtap="formSubmit" data-form="form{{index}}" hover-class="button-hover">确定</button>
+        </mp-form>
+      </view>
+    </scroll-view>
+    <view class="dialog-footer">
+      <button class="dialog-btn" bindtap="onAdd" hover-class="button-hover">增加回复内容</button>
+    </view>
+  </view>
+</mp-dialog>

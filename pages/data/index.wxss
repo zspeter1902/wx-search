@@ -1,0 +1,23 @@
+.nav-tabs {
+  position: relative;
+  /* top: -118rpx; */
+  margin: -118rpx 20rpx 0;
+  border-radius: 8rpx;
+}
+/* 更改弹窗默认样式 */
+.dialog-form {
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.dialog .weui-dialog {
+  border-radius: 8rpx;
+  background-color: #CA6FFF;
+}
+.dialog .weui-dialog__ft,
+.dialog .weui-dialog__hd {
+  display: none !important;
+}
+.dialog .weui-dialog__bd {
+  padding: 32rpx 28rpx;
+  margin-bottom: 0;
+}

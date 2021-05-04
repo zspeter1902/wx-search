@@ -1,0 +1,51 @@
+<!-- 引入骨架屏模版  skeleton -->
+<skeleton selector="sk" unit="px" region="{{region}}" wx:if="{{showSkeleton}}"></skeleton>
+<!-- 自定义顶部条 -->
+<custom />
+<view class="sk">
+  <view class="userinfo" >
+    <image class="bg" src="/images/dialog_bg.png" mode="aspectFill"/>
+    <view class="box df ai-center" style="padding-top: {{statusBarHeight}}px">
+      <view class="df-fixed">
+        <open-data class="avatar sk-header-radius" type="userAvatarUrl"></open-data>
+      </view>
+      <view class="df-auto">
+        <view class="name sk-header-rect" wx:if="{{userInfo.openid}}">您好, <open-data type="userNickName"></open-data></view>
+        <button
+          wx:if="{{!userInfo.openid}}"
+          class='login-btn sk-header-rect'
+          hover-class="button-hover" open-type="getUserInfo"
+          lang="zh_CN"
+          bindgetuserinfo="getUserInfo"
+        >
+          登录
+        </button>
+      </view>
+    </view>
+  </view>
+  <!-- 绑定 -->
+  <view class="company">
+    <view class="box df ai-center bg-white {{isFirstBind ? 'bind' : ''}}">
+      <image class="logo sk-lists-rect" src="/images/meituan.png" mode="aspectFit"></image>
+      <view class="info">
+        <view class="df">
+          <text class="name df-fixed sk-lists-rect">店铺ID：</text>
+          <text wx:if="{{isFirstBind}}" class="value  sk-lists-rect">124351545435345</text>
+          <input wx:else class="input" type="text" data-field="firstId" bindinput="inputChange"/>
+        </view>
+        <button wx:if="{{!isFirstBind}}" class="btn sk-lists-rect" bindtap="onBind" data-field="firstId" data-bind="isFirstBind" hover-class="button-hover">绑定</button>
+      </view>
+    </view>
+    <view class="box df ai-center bg-white {{isSecondBind ? 'bind' : ''}}">
+      <image class="logo sk-lists-rect" src="/images/eleme.png" mode="aspectFit"></image>
+      <view class="info">
+        <view class="df">
+          <text class="name df-fixed sk-lists-rect">店铺ID</text>
+          <text  wx:if="{{isSecondBind}}" class="value sk-lists-rect">124351545435345</text>
+          <input wx:else class="input" type="text" data-field="secondId" bindinput="inputChange"/>
+        </view>
+        <button wx:if="{{!isSecondBind}}" class="btn sk-lists-rect" bindtap="onBind" data-field="secondId" data-bind="isSecondBind" hover-class="button-hover">绑定</button>
+      </view>
+    </view>
+  </view>
+</view>
