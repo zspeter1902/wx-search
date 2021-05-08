@@ -41,11 +41,16 @@ class HTTP {
       success: (res) => {
         const code = res.statusCode.toString()
         if (code.startsWith('2')) {
-          resolve(res.data)
+          if (res.data.code == '200') {
+            resolve(res.data.result)
+          } else {
+            reject(res.data.msg)
+          }
         } else {
           if (res.statusCode == 10001) {
             wx.removeStorageSync('userInfo');
             wx.removeStorageSync('token');
+            wx.removeStorageSync('openId');
             Login.wxLogin(() => {
               this._request(url, resolve, reject, data, method)
             })

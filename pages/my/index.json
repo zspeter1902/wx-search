@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "我的",
   "usingComponents": {
-    "skeleton": "@best-components/miniprogram-skeleton/index"
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-loading": "weui-miniprogram/loading/loading"
   }
 }

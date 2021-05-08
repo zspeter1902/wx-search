@@ -1,6 +1,8 @@
 // pages/data/components/base/index.js
 import {userModel} from '../../../../models/user.js';
 const user = new userModel()
+import {login} from '../../../../utils/login.js';
+const Login = new login();
 Component({
   options: {
     addGlobalClass: true,
@@ -11,9 +13,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    info: {
-      type: Object,
-      value: () => {}
+    shopName: {
+      type: String
     }
   },
 
@@ -22,52 +23,8 @@ Component({
    */
   data: {
     switch: false,
-    lists: [
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      }
-    ],
-    lists2: [
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      },
-      {
-        text: '>1、-17号单-出餐成功'
-      }
-    ],
+    lists: [],
+    lists2: [],
     dialogShow: false,
     formData: {
       time: null
@@ -75,16 +32,53 @@ Component({
     rules: [{
       name: 'time',
       rules: [{required: true, message: '请输入时间'}, {range: [5, 20], message: '值在5-20之间'}],
-    }]
+    }],
+    realTime: null //实时数据对象
   },
-
+  /**
+   * 组件的生命周期
+   */
+   lifetimes: {
+    attached: function () {
+      // 在组件实例进入页面节点树时执行
+      this.getInfo()
+    },
+    detached: function () {
+    }
+  },
+  pageLifetimes: {
+    show: function () {
+      this.data.realTime = setInterval(() => {
+        // 请求服务器数据
+        this.getInfo()
+        // 反馈提示
+        // wx.showToast({
+        //   title: '数据已更新！'
+        // })
+      }, 4 * 60000)//间隔时间
+      // 更新数据
+      // this.setData({
+      //   realTime: this.data.realTime
+      // })
+    },
+    hide: function () {
+      clearInterval(this.data.realTime)
+    },
+  },
   /**
    * 组件的方法列表
    */
   methods: {
     getInfo() {
-      user.getShopReview(shopId).then(res => {
-
+      Login.checkLogin(() => {
+        user.getOrders().then(res => {
+          this.setData({
+            lists: res.data.mt,
+            lists2: res.data.eleme,
+            switch: !!Number(res.status),
+            'formData.time': res.meal_time
+          })
+        })
       })
     },
     onSwitch(e) {
@@ -110,23 +104,24 @@ Component({
         complete: ()=>{}
       });
     },
-    setAutoList(status) {
-      const shopId = wx.getStorageSync('shopId')
-      user.setShopTime(shopId, this.data.formData.time, +status).then(res => {
-        this.setData({
-          switch: status
-        })
-        wx.showToast({
-          title: '',
-          icon: 'success'
-        })
-      }).catch((err) => {
-        this.setData({
-          switch: !status
-        })
-        wx.showToast({
-          title: '',
-          icon: 'error'
+    setAutoList(status, time) {
+      Login.checkLogin(res => {
+        user.setShopTime(this.data.shopName, +status, time).then(res => {
+          this.setData({
+            switch: status
+          })
+          wx.showToast({
+            title: '设置成功！',
+            icon: 'success'
+          })
+        }).catch((err) => {
+          this.setData({
+            switch: !status
+          })
+          wx.showToast({
+            title: '设置失败',
+            icon: 'error'
+          })
         })
       })
     },
@@ -148,7 +143,6 @@ Component({
     },
     formSubmit() {
       this.selectComponent('#form').validate((valid, errors) => {
-        console.log('valid', valid, errors)
         if (!valid) {
           const firstError = Object.keys(errors)
           if (firstError.length) {
@@ -158,6 +152,7 @@ Component({
             })
           }
         } else {
+          this.setAutoList(+this.data.switch, this.data.formData.time)
           this.setData({
             dialogShow: false
           })

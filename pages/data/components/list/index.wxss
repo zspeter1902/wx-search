@@ -24,6 +24,9 @@
   color: #3b3085;
   font-weight: bold;
 }
+.info-list {
+  height: 420rpx;
+}
 .info-list .list {
   margin-bottom: 20rpx;
   color: #555;

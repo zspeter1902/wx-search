@@ -2,11 +2,11 @@
 <view class="base">
   <image class="bg" src="/images/bg.png" mode="widthFix"></image>
   <view class="base-box df ai-center">
-    <image class="logo" src="{{info.img}}" mode="aspectFit">
+    <image class="logo" src="{{info.pic_url}}" mode="aspectFit">
     </image>
     <view class="brand-info">
-      <view class="brand-name ellipsis">{{info.brandName}}</view>
-      <view class="brand-time">时间：{{info.time}}</view>
+      <view class="brand-name ellipsis">{{info.shop_name}}</view>
+      <view class="brand-time">时间：{{time}}</view>
     </view>
   </view>
 </view>

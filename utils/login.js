@@ -10,7 +10,7 @@ class login {
       // 登录
       wx.showModal({
         title: '提示',
-        content: '此操作需要您先登录！',
+        content: '您尚未登录！',
         showCancel: true,
         cancelText: '取消',
         cancelColor: '#333333',
@@ -19,8 +19,7 @@ class login {
         success: (result) => {
           if (result.confirm) {
             wx.removeStorageSync('userInfo');
-            wx.setStorageSync('coupon', true);
-            wx.removeStorageSync('token');
+            wx.removeStorageSync('openId');
             if (pages[pages.length - 1].route == 'pages/my/index') {
               that.wxLogin()
             } else {
@@ -35,30 +34,24 @@ class login {
   }
 
   async wxLogin(callback) {
-    const wxa = wx.async(['login', 'getUserInfo'])
+    const wxa = wx.async(['login'])
     try {
       const res1 = await wxa.login()
-      const res2 = await wxa.getUserInfo()
       wx.request({
         url: config.api_base_url + 'login/wxLogin',
         method: 'GET',
         data: {
-          code: res1.code,
-          iv: res2.iv,
-          encryptedData: res2.encryptedData
+          code: res1.code
         },
         success: (res) => {
-          console.log(res)
           const result = res.data.result
-          if (res.statusCode == 200) {
-            wx.removeStorageSync('token');
-            wx.removeStorageSync('openId');
+          if (res.data.code == 200) {
+            wx.removeStorageSync('token')
+            wx.removeStorageSync('openId')
             if (result.token) {
-              wx.setStorageSync('token', result.token);
+              wx.setStorageSync('token', result.token)
             }
-            wx.setStorageSync('openId', result.openid);
-            // 获取用户信息
-            wx.setStorageSync('userInfo', result);
+            wx.setStorageSync('openId', result.openid)
             if (callback) {
               callback()
               return

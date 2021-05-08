@@ -12,12 +12,12 @@ App({
       logs.splice(2)
     }
     wx.setStorageSync('logs', logs)
-    const token = wx.getStorageSync('token');
-    if (!token) {
-      wx.switchTab({
-        url: '/pages/my/index'
-      })
-    }
+    // const token = wx.getStorageSync('token');
+    // if (!!token) {
+    //   wx.switchTab({
+    //     url: 'pages/data/index'
+    //   })
+    // }
     // 版本更新
     this.update();
   },
@@ -56,7 +56,6 @@ App({
     }
   },
   globalData: {
-    userInfo: null,
     current: 0,
     picUrl: config.picUrl,
     copyright: config.copyright

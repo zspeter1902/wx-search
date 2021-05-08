@@ -1,6 +1,8 @@
 // pages/data/components/base/index.js
 import {userModel} from '../../../../models/user.js';
 const user = new userModel()
+import {login} from '../../../../utils/login.js';
+const Login = new login();
 Component({
   options: {
     addGlobalClass: true,
@@ -11,9 +13,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    info: {
-      type: Object,
-      value: () => {}
+    shopName: {
+      type: String
     }
   },
 
@@ -22,37 +23,53 @@ Component({
    */
   data: {
     switch: false,
-    lists: {
-      auto: '已自动回复2条评价',
-      text: '有一条差评待人工回复'
-    },
-    lists2: {
-      auto: '已自动回复2条评价',
-      text: '有一条差评待人工回复'
-    },
+    lists: {},
+    lists2: {},
     dialogShow: false,
     isTip: false,
-    formData: {
-      content: null
-    },
+    formData: [],
     rules: [{
-      name: 'content',
+      name: 'reply',
       rules: [{required: true, message: '请输入内容'}]
     }]
   },
-
+  observers: {
+    'shopName': function(newVal) {
+      if (newVal) {
+        this.getInfo()
+      }
+    }
+  },
   /**
    * 组件的方法列表
    */
   methods: {
     getInfo() {
-      user.getShopReply(shopId).then(res => {
-
+      Login.checkLogin(() => {
+        user.getShopReply(this.data.shopName).then(res => {
+          this.setData({
+            formData: res.data,
+            switch: !!Number(res.status)
+          })
+        })
+        user.getReplyStatistics().then(res => {
+          this.setData({
+            lists: res.mt,
+            lists2: res.eleme
+          })
+        })
       })
     },
-    setReply() {
-      user.setShopReply(shopId, num, reply).then(res => {
-
+    setReply(shopName, num, reply) {
+      Login.checkLogin(() => {
+        user.setShopReply(shopName, num, reply).then(res => {
+          wx.showToast({
+            title: '保存成功！',
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          });
+        })
       })
     },
     onSwitch(e) {
@@ -79,26 +96,28 @@ Component({
       });
     },
     setAutoReply(status) {
-      const shopId = wx.getStorageSync('shopId')
-      user.bindShopReview(shopId, +status).then(res => {
-        this.setData({
-          switch: status
-        })
-        wx.showToast({
-          title: '',
-          icon: 'success'
-        })
-      }).catch(err => {
-        this.setData({
-          switch: !status
-        })
-        wx.showToast({
-          title: '',
-          icon: 'error'
+      Login.checkLogin(() => {
+        user.bindShopReview(this.data.shopName, +status).then(res => {
+          this.setData({
+            switch: status
+          })
+          wx.showToast({
+            title: '设置成功！',
+            icon: 'success'
+          })
+        }).catch(err => {
+          this.setData({
+            switch: !status
+          })
+          wx.showToast({
+            title: '设置失败！',
+            icon: 'error'
+          })
         })
       })
     },
     openReply() {
+      this.getInfo()
       this.setData({
         dialogShow: true
       })
@@ -109,16 +128,21 @@ Component({
       })
     },
     formInputChange(e) {
-      const {field} = e.currentTarget.dataset
+      const {field, index} = e.currentTarget.dataset
       this.setData({
-          [`formData.${field}`]: e.detail.value
+          [`formData[${index}].${field}`]: e.detail.value
       })
     },
     onAdd() {
-
+      const len = this.data.formData.length
+      if (len < 10) {
+        this.setData({
+          [`formData[${len}]`]: {}
+        })
+      }
     },
     formSubmit(e) {
-      const form = e.currentTarget.dataset.form
+      const {form, index} = e.currentTarget.dataset
       this.selectComponent('#' + form).validate((valid, errors) => {
         console.log('valid', valid, errors)
         if (!valid) {
@@ -130,6 +154,8 @@ Component({
             })
           }
         } else {
+          const currentData = this.data.formData[index]
+          this.setReply(this.data.shopName, currentData.num, currentData.reply)
           this.setData({
             dialogShow: false
           })

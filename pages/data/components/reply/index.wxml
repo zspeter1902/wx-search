@@ -3,15 +3,15 @@
   <view wx:if="{{switch}}" class="info-list-box df-auto">
     <view class="list-title">美团</view>
     <view class="info-list df flex-column jc-center">
-      <text>{{ lists.auto }}</text>
-      <text>{{ lists.text }}</text>
+      <text>{{ lists['0'] }}</text>
+      <text>{{ lists['1'] }}</text>
     </view>
   </view>
   <view wx:if="{{switch}}" class="info-list-box df-auto">
     <view class="list-title">饿了么</view>
     <view class="info-list df flex-column jc-center">
-      <text>{{ lists2.auto }}</text>
-      <text>{{ lists2.text }}</text>
+      <text>{{ lists2['0'] }}</text>
+      <text>{{ lists2['1'] }}</text>
     </view>
   </view>
   <view class="tip" wx:if="{{isTip}}">您的店铺已掉线，请联系您的运营组</view>
@@ -27,10 +27,22 @@
       <mp-icon class="icon-close" icon="close" color="white" size="{{24}}" bind:tap="onClose"></mp-icon>
     </view>
     <scroll-view class="dialog-content" scroll-y>
-      <view class="dialog-form" wx:for="{{10}}">
-        <mp-form id="form{{index}}" rules="{{rules}}" models="{{formData}}">
-          <textarea bindinput="formInputChange" data-field="content" class="dialog-textarea" maxlength="{{240}}" placeholder="输入内容"/>
-          <button class="dialog-submit" bindtap="formSubmit" data-form="form{{index}}" hover-class="button-hover">确定</button>
+      <view class="dialog-form" wx:for="{{formData}}" wx:key="index">
+        <mp-form wx:if="{{index < 10}}" id="form{{index}}" rules="{{rules}}" models="{{item}}">
+          <textarea
+            data-field="reply"
+            data-index="{{index}}"
+            maxlength="{{240}}"
+            placeholder="输入内容"
+            class="dialog-textarea"
+            bindinput="formInputChange"
+            value="{{item.reply}}" />
+          <button
+            class="dialog-submit"
+            bindtap="formSubmit"
+            data-form="form{{index}}"
+            data-index="{{index}}"
+            hover-class="button-hover">确定</button>
         </mp-form>
       </view>
     </scroll-view>

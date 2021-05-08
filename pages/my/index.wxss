@@ -2,14 +2,17 @@
   position: relative;
 }
 .userinfo .bg{
+  position: relative;
   width: 100%;
   height: 358rpx;
+  z-index: 1;
 }
 .userinfo .box{
   position: absolute;
   top: 128rpx;
   left: 32rpx;
   right: 32rpx;
+  z-index: 2;
 }
 .userinfo .avatar{
   display: inline-block;
@@ -45,13 +48,10 @@
 .company .box {
   position: relative;
   height: 310rpx;
-  padding: 0 46rpx 60rpx;
+  padding: 0 46rpx;
   margin-bottom: 40rpx;
   border-radius: 8rpx;
   overflow: hidden;
-}
-.company .bind {
-  padding: 0 74rpx 0;
 }
 .company .bind::before {
   content: '';
@@ -93,20 +93,22 @@
   border: 1rpx solid #e7e7e7;
 }
 .company .btn {
-  position: absolute;
-  bottom: 30rpx;
-  margin: 0 0 0 60rpx;
-  width: 140rpx !important;
-  padding: 10rpx;
+  width: 100%;
+  padding: 18rpx;
   color: #fff;
   font-weight: bold;
   font-size: 26rpx;
   font-family: '黑体';
   border-radius: 8rpx;
   font-weight: normal;
-  line-height: 24rpx;
+  line-height: 28rpx;
   background-color: #ce7cfd;
   box-shadow: 1rpx 4rpx 8rpx rgba(212, 155, 245, 0.63);
+}
+.icon-edit {
+  padding: 0rpx 20rpx;
+  /* width: 50rpx;
+  height: 50rpx; */
 }
 .button-hover {
   opacity: 0.8;

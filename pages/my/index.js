@@ -11,12 +11,8 @@ Page({
    */
   data: {
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
-    // 骨架屏相关
-    showSkeleton: true,
-    region: {
-			header: true,
-			lists: true
-    },
+    loading: true,
+    type: 'dot-gray', //dot-gray circle
     userInfo: {},
     firstId: null,
     isFirstBind: false,
@@ -28,24 +24,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.hideLoading();
-    const userInfo = wx.getStorageSync('userInfo')
-    this.setData({
-      userInfo
-    })
     this.getBindInfo()
-
+    const userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      this.setData({
+        userInfo
+      })
+    }
+    setTimeout(() => {
+      this.setData({
+        loading: false
+      })
+    }, 1500)
   },
   getBindInfo() {
+    const token = wx.getStorageSync('token');
+    if (!token) {
+      return
+    }
     user.getShopAccount().then(res => {
-      const result = res.result.data
+      const result = res.data
       this.setData({
         firstId: result.mt_account_id,
         isFirstBind: !!result.mt_account_id,
         secondId: result.eleme_account_id,
-        isSecondBind: !!result.eleme_account_id,
-        'region.header': false,
-        'region.lists': false
+        isSecondBind: !!result.eleme_account_id
       })
     })
   },
@@ -55,29 +58,45 @@ Page({
       [field]: e.detail.value
     })
   },
-  onBind(e) {
-    const {field, bind} = e.currentTarget.dataset
-    const companyId = this.data[field]
-    const types = new Map()
-    types.set('firstId', 'mt') // 美团
-    types.set('secondId', 'eleme') // 饿了么
-    user.bindShopAccountId(companyId, types.get(field)).then( res => {
+  onEdit(e) {
+    const {field} = e.currentTarget.dataset
+    this.setData({
+      [field]: false
+    })
+  },
+  onBind() {
+    user.bindShopAccountId(this.data.firstId, this.data.secondId).then(() => {
       this.setData({
-        [bind]: true
+        'isFirstBind': !!this.data.firstId,
+        'isSecondBind': !!this.data.secondId
       })
     })
   },
-  getUserInfo(e){
-    if (e.detail.userInfo) {
-      wx.showLoading({
-        title: '登录中...',
-        mask: true
-      });
-      Login.wxLogin();
-      // this.setData({
-      //   userInfo: e.detail.userInfo
-      // })
-    }
+  getUserProfile() {
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: res => {
+        wx.setStorageSync('userInfo', res.userInfo)
+        this.setData({
+          loading: true,
+          type: 'circle'
+        })
+        Login.wxLogin(() => {
+          this.getBindInfo()
+          this.setData({
+            userInfo: res.userInfo
+          })
+          this.setData({
+            loading: false,
+            type: 'dot-gray'
+          })
+        });
+      }
+    })
+  },
+  isLogin() {
+    const token = wx.getStorageSync('token');
+    return !!token
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

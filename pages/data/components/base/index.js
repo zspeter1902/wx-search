@@ -19,9 +19,29 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    time: null
   },
-
+  /**
+   * 组件的生命周期
+  */
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+      var timestamp = Date.parse(new Date());
+      var date = new Date(timestamp);
+      //获取年份
+      var Y =date.getFullYear();
+      //获取月份
+      var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+      //获取当日日期
+      var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+      this.setData({
+        time: Y + '-' + M + '-' + D
+      })
+    },
+    detached: function() {
+    }
+  },
   /**
    * 组件的方法列表
    */

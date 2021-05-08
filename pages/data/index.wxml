@@ -1,5 +1,4 @@
 <!-- index.wxml -->
-<!-- 引入骨架屏模版  skeleton -->
 <mp-loading ext-class="loading-center" show="{{loading}}" type="dot-gray"/>
 <!-- 自定义顶部条 -->
 <custom custom-class="{{isBar ? 'bg-white' : ''}}" />
@@ -18,11 +17,11 @@
         </view>
         <!-- 出单详情 -->
         <view wx:if="{{index === 1}}">
-          <list />
+          <list shop-name="{{info.shop_name}}" />
         </view>
         <!-- 评价回复 -->
         <view wx:if="{{index === 2}}">
-          <reply />
+          <reply shop-name="{{info.shop_name}}" />
         </view>
       </view>
     </block>
