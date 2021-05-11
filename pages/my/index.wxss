@@ -43,13 +43,13 @@
 }
 /* company */
 .company {
-  padding: 22rpx 36rpx;
+  padding: 20rpx 36rpx;
 }
 .company .box {
   position: relative;
   height: 310rpx;
   padding: 0 46rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx; /*40rpx*/
   border-radius: 8rpx;
   overflow: hidden;
 }
@@ -92,23 +92,136 @@
   text-align: left;
   border: 1rpx solid #e7e7e7;
 }
-.company .btn {
+.company .btn-bind {
+  width: 100%;
+  padding: 20rpx;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+  line-height: 40rpx;
+  font-weight: normal;
+  background-color: #CA6FFF;
+}
+.company .btn-apply {
   width: 100%;
   padding: 18rpx;
-  color: #fff;
-  font-weight: bold;
-  font-size: 26rpx;
-  font-family: '黑体';
+  margin-top: 120rpx;
+  color: #D07AFF;
+  font-size: 30rpx;
   border-radius: 8rpx;
+  line-height: 40rpx;
   font-weight: normal;
-  line-height: 28rpx;
-  background-color: #ce7cfd;
-  box-shadow: 1rpx 4rpx 8rpx rgba(212, 155, 245, 0.63);
+  background-color: #fff;
 }
 .icon-edit {
   padding: 0rpx 20rpx;
   /* width: 50rpx;
   height: 50rpx; */
+}
+.button-hover {
+  opacity: 0.8;
+}
+/* 弹窗 */
+.dialog-container {
+  position: relative;
+  z-index: 2;
+}
+.dialog-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.dialog-header {
+  position: relative;
+  margin-bottom: 30rpx;
+}
+.icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: .5;
+}
+.dialog-form {
+  border-radius: 4rpx;
+  margin-bottom: 4rpx;
+  text-align: left;
+  overflow: hidden;
+}
+/* 更改弹窗默认样式 */
+.dialog .weui-dialog {
+  border-radius: 8rpx;
+  background-color: #CA6FFF;
+}
+.dialog .weui-dialog__ft,
+.dialog .weui-dialog__hd {
+  display: none !important;
+}
+.dialog .weui-dialog__bd {
+  padding: 32rpx 28rpx;
+  margin-bottom: 0;
+}
+.my-cells .weui-cells{
+  padding: 0 16rpx;
+  background-color: transparent;
+}
+.my-cells .cell--weui-cell_wxss.cell--weui-cell_wxss:before,
+.my-cells .weui-cells:after, .my-cells .weui-cells:before {
+  display: none;
+}
+.my-cells .weui-cell {
+  padding: 5rpx 24rpx;
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+.my-cells .weui-label {
+  width: 140rpx;
+  color: #3B3085;
+}
+.my-cells .weui-input {
+  height: 60rpx;
+  min-height: 60rpx;
+  line-height: 60rpx;
+}
+.my-cells-code {
+  margin-top: 20rpx;
+}
+.my-cells-code .weui-cell {
+  margin-bottom: 12rpx;
+}
+.my-cell-tip {
+  padding: 0 16rpx;
+  color: #fff;
+  font-size: 22rpx;
+  line-height: 30rpx;
+}
+.my-cell-tip .text + .text {
+  margin-left: 18rpx;
+}
+.my-cell-btn {
+  margin-top: 88rpx;
+}
+.dialog-title {
+  margin: 20rpx 4rpx;
+  color: #fff;
+  font-size: 50rpx;
+  line-height: 70rpx;
+  font-weight: 600;
+  text-shadow: 0 3rpx 3rpx #b04aec;
+  font-family: '黑体';
+}
+.dialog-submit {
+  width: 100% !important;
+  padding: 20rpx;
+  color: #3B3085;
+  font-weight: bold;
+  font-size: 26rpx;
+  font-family: '黑体';
+  border-radius: 0;
+  line-height: 40rpx;
+  background-color: #fff;
 }
 .button-hover {
   opacity: 0.8;

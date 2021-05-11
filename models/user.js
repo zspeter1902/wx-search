@@ -59,6 +59,17 @@ class userModel extends HTTP {
       }
     })
   }
+  // 删除自动回复内容
+  deleteReply(shopName, num) {
+    return this.request({
+      url: 'shop/delOperationReply',
+      method: 'POST',
+      data: {
+        shop_name: shopName,
+        num
+      }
+    })
+  }
   // 获取店铺出单列表
   getOrders() {
     const openId = wx.getStorageSync('openId');
@@ -121,6 +132,14 @@ class userModel extends HTTP {
       data: {
         openid: openId
       }
+    })
+  }
+  // 新增测试店铺
+  applyTest(data) {
+    return this.request({
+      url: 'shop/userBindInvitationShop',
+      method: 'POST',
+      data
     })
   }
 }

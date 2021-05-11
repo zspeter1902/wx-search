@@ -1,12 +1,12 @@
 import { config } from "../config.js"
 class login {
-  checkLogin(callback) {
+  checkLogin(callback, isMsg = true) {
     const that = this
     const token = wx.getStorageSync('token');
     const pages = getCurrentPages()
     if (token) {
       callback && callback()
-    } else {
+    } else if (isMsg) {
       // 登录
       wx.showModal({
         title: '提示',
@@ -18,7 +18,6 @@ class login {
         confirmColor: '#CA6FFF',
         success: (result) => {
           if (result.confirm) {
-            wx.removeStorageSync('userInfo');
             wx.removeStorageSync('openId');
             if (pages[pages.length - 1].route == 'pages/my/index') {
               that.wxLogin()

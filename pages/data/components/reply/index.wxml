@@ -38,16 +38,24 @@
             bindinput="formInputChange"
             value="{{item.reply}}" />
           <button
+            hidden="{{isDelete}}"
             class="dialog-submit"
             bindtap="formSubmit"
             data-form="form{{index}}"
             data-index="{{index}}"
             hover-class="button-hover">确定</button>
+          <button
+          hidden="{{!isDelete}}"
+            class="dialog-delete"
+            bindtap="formDelete"
+            data-index="{{index}}"
+            hover-class="button-hover">删除</button>
         </mp-form>
       </view>
     </scroll-view>
-    <view class="dialog-footer">
-      <button class="dialog-btn" bindtap="onAdd" hover-class="button-hover">增加回复内容</button>
+    <view class="dialog-footer df jc-between">
+      <button class="dialog-btn df-auto" bindtap="onAdd" hover-class="button-hover">增加回复内容</button>
+      <button class="dialog-btn-switch df-fixed" bindtap="switchDelete" hover-class="button-hover">删除</button>
     </view>
   </view>
 </mp-dialog>

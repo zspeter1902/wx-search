@@ -31,7 +31,8 @@ Component({
     rules: [{
       name: 'reply',
       rules: [{required: true, message: '请输入内容'}]
-    }]
+    }],
+    isDelete: false
   },
   observers: {
     'shopName': function(newVal) {
@@ -58,7 +59,7 @@ Component({
             lists2: res.eleme
           })
         })
-      })
+      }, false)
     },
     setReply(shopName, num, reply) {
       Login.checkLogin(() => {
@@ -72,6 +73,7 @@ Component({
         })
       })
     },
+
     onSwitch(e) {
       const msg = e.detail ? '打开' : '关闭'
       wx.showModal({
@@ -141,10 +143,32 @@ Component({
         })
       }
     },
+    switchDelete() {
+      this.setData({
+        isDelete: !this.data.isDelete
+      })
+    },
+    formDelete(e) {
+      const {index} = e.currentTarget.dataset
+      const arr = this.data.formData
+      const currentData = arr.splice(index, 1)[0]
+      Login.checkLogin(() => {
+        user.deleteReply(this.data.shopName, currentData.num).then(() => {
+          wx.showToast({
+            title: '删除成功！',
+            icon: 'success',
+            duration: 1500,
+            mask: true
+          });
+          this.setData({
+            formData: arr
+          })
+        })
+      })
+    },
     formSubmit(e) {
       const {form, index} = e.currentTarget.dataset
       this.selectComponent('#' + form).validate((valid, errors) => {
-        console.log('valid', valid, errors)
         if (!valid) {
           const firstError = Object.keys(errors)
           if (firstError.length) {
@@ -155,10 +179,10 @@ Component({
           }
         } else {
           const currentData = this.data.formData[index]
-          this.setReply(this.data.shopName, currentData.num, currentData.reply)
-          this.setData({
-            dialogShow: false
-          })
+          this.setReply(this.data.shopName, currentData.num || this.data.formData.length, currentData.reply)
+          // this.setData({
+          //   dialogShow: false
+          // })
         }
       })
     }

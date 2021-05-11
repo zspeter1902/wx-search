@@ -26,43 +26,43 @@
   <view class="box">
     <s-title title="外卖单量曲线" />
     <view class="canvas canvas-line">
-      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec1 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="美团饿了么单量数据" />
     <view class="canvas canvas-bar">
-      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="美团饿了么曝光数据" />
     <view class="canvas canvas-bar">
-      <ec-canvas id="mychart-dom-bar2" canvas-id="mychart-bar2" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-bar2" canvas-id="mychart-bar2" ec="{{ ec3 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="入店转化率曲线%" />
     <view class="canvas canvas-line">
-      <ec-canvas id="mychart-dom-line2" canvas-id="mychart-line2" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-line2" canvas-id="mychart-line2" ec="{{ ec4 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="下单转化率曲线%" />
     <view class="canvas canvas-line">
-      <ec-canvas id="mychart-dom-line3" canvas-id="mychart-line3" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-line3" canvas-id="mychart-line3" ec="{{ ec5 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="美团饿了么销售占比" />
     <view class="canvas canvas-pie">
-      <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-pie" canvas-id="mychart-pie" ec="{{ ec6 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
   <view class="box">
     <s-title title="店铺近1个月评价" />
     <view class="canvas canvas-bar" style="height: 640rpx; margin-top: 30rpx;background-color: #fef8ef;">
-      <ec-canvas id="mychart-dom-bar3" canvas-id="mychart-bar3" ec="{{ ec }}" force-use-old-canvas="true"></ec-canvas>
+      <ec-canvas id="mychart-dom-bar3" canvas-id="mychart-bar3" ec="{{ ec7 }}" force-use-old-canvas="true"></ec-canvas>
     </view>
   </view>
 </view>

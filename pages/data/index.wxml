@@ -13,7 +13,7 @@
       <view hidden="{{!(active == index)}}">
         <!-- 店铺详情 -->
         <view wx:if="{{index === 0}}">
-          <store />
+          <store shop-name="{{info.shop_name}}" />
         </view>
         <!-- 出单详情 -->
         <view wx:if="{{index === 1}}">

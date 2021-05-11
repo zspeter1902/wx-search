@@ -30,6 +30,7 @@ Page({
     // 顶部条
     isBar: false,
     viewHeight: 0,
+    isRefresh: false
   },
   //options(Object)
   onLoad: function(options){
@@ -62,6 +63,17 @@ Page({
   onReady: function() {
   },
   onShow: function() {
+    const token = wx.getStorageSync('token');
+    if (!token) {
+      this.setData({
+        isRefresh: true
+      })
+    } else if (this.data.isRefresh) {
+      this.setData({
+        isRefresh: false
+      })
+      this.onLoad()
+    }
   },
   onHide: function() {
   },

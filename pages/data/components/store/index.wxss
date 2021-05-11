@@ -32,7 +32,7 @@
   height: 600rpx;
 }
 .canvas-line {
-  height: 430rpx;
+  height: 480rpx;
 }
 .canvas-bar {
   height: 400rpx;

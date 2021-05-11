@@ -41,9 +41,15 @@ Component({
    lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      this.getInfo()
     },
     detached: function () {
+    }
+  },
+  observers: {
+    'shopName': function(newVal) {
+      if (newVal) {
+        this.getInfo()
+      }
     }
   },
   pageLifetimes: {
@@ -79,7 +85,7 @@ Component({
             'formData.time': res.meal_time
           })
         })
-      })
+      }, false)
     },
     onSwitch(e) {
       const msg = e.detail ? '打开' : '关闭'

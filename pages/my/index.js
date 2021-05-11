@@ -12,12 +12,23 @@ Page({
   data: {
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     loading: true,
+    token: wx.getStorageSync('token'),
     type: 'dot-gray', //dot-gray circle
     userInfo: {},
     firstId: null,
     isFirstBind: false,
     secondId: null,
-    isSecondBind: false
+    isSecondBind: false,
+    dialogShow: false,
+    formData: {},
+    rules: [{
+      name: 'name',
+      rules: [{required: true, message: '请输入店铺名称'}]
+    }, {
+      name: 'code',
+      rules: [{required: true, message: '请输入邀请码！'}]
+    }],
+    phone: '13865970587'
   },
 
   /**
@@ -84,9 +95,8 @@ Page({
         Login.wxLogin(() => {
           this.getBindInfo()
           this.setData({
-            userInfo: res.userInfo
-          })
-          this.setData({
+            userInfo: res.userInfo,
+            token: wx.getStorageSync('token'),
             loading: false,
             type: 'dot-gray'
           })
@@ -97,6 +107,69 @@ Page({
   isLogin() {
     const token = wx.getStorageSync('token');
     return !!token
+  },
+  onOpen() {
+    this.setData({
+      dialogShow: true
+    })
+  },
+  onClose() {
+    this.setData({
+      dialogShow: false
+    })
+  },
+  formInputChange(e) {
+    const {field} = e.currentTarget.dataset
+    this.setData({
+        [`formData.${field}`]: e.detail.value
+    })
+  },
+  toCall() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+      success: function () {
+        console.log('成功拨打电话')
+      }
+    })
+  },
+  formSubmit(e) {
+    const {mtId, elemeId} = this.data.formData
+    this.selectComponent('#form').validate((valid, errors) => {
+      if (!valid || (!mtId && !elemeId)) {
+        if (!errors) {
+          wx.showToast({
+            icon: 'error',
+            title: '请填写店铺ID'
+          })
+        }
+        const firstError = Object.keys(errors)
+        if (firstError.length) {
+          wx.showToast({
+            icon: 'error',
+            title: errors[firstError[0]].message
+          })
+        }
+      } else {
+        this.onHttpSubmit()
+      }
+    })
+  },
+  onHttpSubmit() {
+    const {name, code, mtId, elemeId} = this.data.formData
+    user.applyTest({
+      shop_name: name,
+      code,
+      mt_account_id: mtId,
+      eleme_account_id: elemeId
+    }).then(() => {
+      this.onClose()
+    }).catch(err => {
+      wx.showToast({
+        title: err,
+        icon: 'error',
+        mask: true
+      });
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -109,7 +182,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      isFirstBind: !!this.data.firstId,
+      isSecondBind: !!this.data.secondId
+    })
   },
 
   /**

@@ -7,14 +7,6 @@ class HTTP {
     const _this = this;
     return new Promise((resolve, reject) => {
       _this._request(url, resolve, reject, data, method)
-    }).catch(reason => {
-      wx.hideToast();
-      wx.showToast({
-        title: '请求异常！',
-        icon: 'error',
-        duration: 3000,
-        mask: false,
-      });
     });
   }
   _request(url, resolve, reject, data = {}, method = 'GET') {
@@ -43,12 +35,7 @@ class HTTP {
         if (code.startsWith('2')) {
           if (res.data.code == '200') {
             resolve(res.data.result)
-          } else {
-            reject(res.data.msg)
-          }
-        } else {
-          if (res.statusCode == 10001) {
-            wx.removeStorageSync('userInfo');
+          } else if (res.data.code == '10001') {
             wx.removeStorageSync('token');
             wx.removeStorageSync('openId');
             Login.wxLogin(() => {
@@ -57,6 +44,8 @@ class HTTP {
           } else {
             reject(res.data.msg)
           }
+        } else {
+          reject(res.data.msg)
         }
       },
       fail: (err) => {

@@ -15,6 +15,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    shopName: {
+      type: String
+    }
   },
 
   /**
@@ -60,9 +63,26 @@ Component({
       }
     ],
     exposureData: [],
-    ec: {
+    ec1: {
       lazyLoad: true
-      // onInit: this.initChart
+    },
+    ec2: {
+      lazyLoad: true
+    },
+    ec3: {
+      lazyLoad: true
+    },
+    ec4: {
+      lazyLoad: true
+    },
+    ec5: {
+      lazyLoad: true
+    },
+    ec6: {
+      lazyLoad: true
+    },
+    ec7: {
+      lazyLoad: true
     },
     exposureCount: {},
     visitCount: {},
@@ -75,10 +95,16 @@ Component({
   lifetimes: {
     attached: function () {
       // 在组件实例进入页面节点树时执行
-      this.getData()
-      this.getEvaluate()
     },
     detached: function () {
+    }
+  },
+  observers: {
+    'shopName': function(newVal) {
+      if (newVal) {
+        this.getData()
+        this.getEvaluate()
+      }
     }
   },
   /**
@@ -100,10 +126,10 @@ Component({
           this.initChartBar(res.order_count)
           this.initChartBar2(res.exposure_count)
           this.initChartLine(res.visitConvRate_count)
-          this.initChartPie(res.order_count)
           this.initChartLine2(res.buyerConvRate)
+          this.initChartPie(res.order_count)
         })
-      })
+      }, false)
     },
     getEvaluate() {
       // tabsData
@@ -111,7 +137,7 @@ Component({
         user.getShopReview().then(res => {
           this.initChartBar3(res)
         })
-      })
+      }, false)
     },
     handleOrderData(orderData) {
       const arr = []
@@ -219,7 +245,7 @@ Component({
           grid: {
             containLabel: true,
             left: 15,
-            top: 30,
+            top: 50,
             right: 15,
             bottom: 40
           },
@@ -324,7 +350,7 @@ Component({
           grid: {
             containLabel: true,
             left: 15,
-            top: 30,
+            top: 50,
             right: 15,
             bottom: 40
           },
@@ -461,7 +487,7 @@ Component({
               margin: 8
             },
             itemStyle: {
-              'color': '#ffd700'
+              'color': '#1e90ff'
             },
             data: eleme_data
           }, {
@@ -478,7 +504,7 @@ Component({
               margin: 8
             },
             itemStyle: {
-              'color': '#1e90ff'
+              'color': '#ffd700'
             },
             data: mj_data
           }]
@@ -555,7 +581,7 @@ Component({
               margin: 8
             },
             itemStyle: {
-              'color': '#ffd700'
+              'color': '#1e90ff'
             },
             data: eleme_data
           }, {
@@ -572,7 +598,7 @@ Component({
               margin: 8
             },
             itemStyle: {
-              'color': '#1e90ff'
+              'color': '#ffd700'
             },
             data: mj_data
           }]

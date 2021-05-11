@@ -110,6 +110,7 @@
 .textarea-placeholder {
   color: #3B3085;
 }
+.dialog-delete,
 .dialog-submit {
   width: 100% !important;
   padding: 10rpx;
@@ -125,9 +126,21 @@
   margin-top: 60rpx;
 }
 .dialog-btn {
-  width: 100% !important;
   padding: 20rpx;
+  margin: 0 !important;
   color: #3B3085;
+  font-weight: bold;
+  font-size: 26rpx;
+  font-family: '黑体';
+  border-radius: 0;
+  line-height: 40rpx;
+  background-color: #F7E8FF;
+}
+.dialog-btn-switch {
+  width: 130rpx !important;
+  padding: 20rpx;
+  margin: 0 0 0 22rpx !important;
+  color: #a2a2a2;
   font-weight: bold;
   font-size: 26rpx;
   font-family: '黑体';
