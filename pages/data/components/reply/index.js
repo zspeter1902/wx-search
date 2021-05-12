@@ -70,6 +70,13 @@ Component({
             duration: 1500,
             mask: true
           });
+        }).catch(err => {
+          wx.showToast({
+            title: '保存失败！',
+            icon: 'error',
+            duration: 1500,
+            mask: true
+          });
         })
       })
     },
@@ -163,6 +170,13 @@ Component({
           this.setData({
             formData: arr
           })
+        }).catch(err => {
+          wx.showToast({
+            title: '删除失败！',
+            icon: 'error',
+            duration: 1500,
+            mask: true
+          });
         })
       })
     },

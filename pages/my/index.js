@@ -77,9 +77,18 @@ Page({
   },
   onBind() {
     user.bindShopAccountId(this.data.firstId, this.data.secondId).then(() => {
+      wx.showToast({
+        title: '绑定成功',
+        icon: 'success'
+      })
       this.setData({
         'isFirstBind': !!this.data.firstId,
         'isSecondBind': !!this.data.secondId
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '绑定失败',
+        icon: 'error'
       })
     })
   },
@@ -162,7 +171,17 @@ Page({
       mt_account_id: mtId,
       eleme_account_id: elemeId
     }).then(() => {
-      this.onClose()
+      const that = this
+      wx.showToast({
+        title: '已成功提交申请',
+        icon: 'success',
+        duration: 2000,
+        success: () => {
+          setTimeout(() => {
+            that.onClose()
+          }, 2000)
+        }
+      });
     }).catch(err => {
       wx.showToast({
         title: err,

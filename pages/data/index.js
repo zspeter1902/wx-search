@@ -51,6 +51,19 @@ Page({
           info: res.data,
           loading: false
         })
+      }).catch(err => {
+        wx.showToast({
+          title: err,
+          icon: 'error',
+          duration: 3000,
+          success: () => {
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/my/index'
+              });
+            }, 3000)
+          }
+        });
       })
     })
   },
