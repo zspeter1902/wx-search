@@ -41,6 +41,19 @@ class HTTP {
             Login.wxLogin(() => {
               this._request(url, resolve, reject, data, method)
             })
+          } else if (res.data.code == '303') {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+              duration: 6000,
+              success: () => {
+                setTimeout(() => {
+                  wx.switchTab({
+                    url: '/pages/my/index'
+                  });
+                }, 6000)
+              }
+            })
           } else {
             reject(res.data.msg)
           }

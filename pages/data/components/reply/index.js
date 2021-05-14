@@ -32,7 +32,12 @@ Component({
       name: 'reply',
       rules: [{required: true, message: '请输入内容'}]
     }],
-    isDelete: false
+    isDelete: false,
+    isSearchShow: false,
+    resultData: [],
+    showIndex: 0,
+    mtSearch: [],
+    elemeSearch: [],
   },
   observers: {
     'shopName': function(newVal) {
@@ -104,6 +109,53 @@ Component({
         complete: ()=>{}
       });
     },
+    // 查询差评开始
+    openSearch() {
+      this.setData({
+        isSearchShow: true
+      })
+    },
+    onCloseSearch() {
+      this.setData({
+        isSearchShow: false
+      })
+    },
+    onSearch(e) {
+      const { type } = e.currentTarget.dataset
+      const types = {
+        'mt': {
+          data: 'mtSearch',
+          name: 'lists'
+        },
+        'eleme': {
+          data: 'elemeSearch',
+          name: 'lists2'
+        }
+      }
+      if (this.data[types[type].data].length) {
+        this.setData({
+          resultData: this.data[types[type].data]
+        })
+        this.openSearch() // 打开弹窗
+        return
+      }
+      user.getBadReplyList(this.data[types[type].name].account_id).then(res => {
+        this.setData({
+          [types[type].data]: res.data.bad_review,
+          resultData: res.data.bad_review
+        })
+        this.openSearch() // 打开弹窗
+      })
+    },
+    onFold(e) {
+      const { index } = e.currentTarget.dataset
+      if (this.data.resultData.length > 1) {
+        this.setData({
+          showIndex: index != this.data.showIndex ? index : null
+        })
+      }
+    },
+    // 查询差评结束
     setAutoReply(status) {
       Login.checkLogin(() => {
         user.bindShopReview(this.data.shopName, +status).then(res => {

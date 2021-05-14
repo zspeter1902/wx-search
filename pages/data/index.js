@@ -24,7 +24,11 @@ Page({
       },
       {
         title: '评价回复'
-    }],
+      },
+      {
+        title: '智能推广'
+      }
+    ],
     tabsData: [],
     active: 0,
     // 顶部条

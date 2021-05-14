@@ -6,6 +6,7 @@
     "tabs": "./components/tabs/index",
     "store": "./components/store/index",
     "list": "./components/list/index",
-    "reply": "./components/reply/index"
+    "reply": "./components/reply/index",
+    "extension": "./components/extension/index"
   }
 }

@@ -134,10 +134,45 @@ class userModel extends HTTP {
       }
     })
   }
+  // 获取店铺差评列表
+  getBadReplyList(account_id) {
+    return this.request({
+      url: 'shop/badReviewSearch',
+      data: {
+        account_id
+      }
+    })
+  }
   // 新增测试店铺
   applyTest(data) {
     return this.request({
       url: 'shop/userBindInvitationShop',
+      method: 'POST',
+      data
+    })
+  }
+  // 智能推广-->详情
+  getExtensionDetail() {
+    const openId = wx.getStorageSync('openId')
+    return this.request({
+      url: 'shop/promoteInfo',
+      data: {
+        openid: openId
+      }
+    })
+  }
+  // 智能推广-->设置
+  getExtensionSetting(accountId) {
+    return this.request({
+      url: 'shop/setPromoteJob',
+      data: {
+        account_id: accountId
+      }
+    })
+  }
+  setExtension(data) {
+    return this.request({
+      url: 'shop/setPromoteJob',
       method: 'POST',
       data
     })

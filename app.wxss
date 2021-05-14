@@ -62,6 +62,9 @@ image {
 .align-middle {
   vertical-align: middle;
 }
+.font-bold {
+  font-weight: bold;
+}
 .ovh{
   overflow: hidden
 }

@@ -23,6 +23,10 @@
         <view wx:if="{{index === 2}}">
           <reply shop-name="{{info.shop_name}}" />
         </view>
+        <!-- 智能推广 -->
+        <view wx:if="{{index === 3}}">
+          <extension shop-name="{{info.shop_name}}" />
+        </view>
       </view>
     </block>
   </view>

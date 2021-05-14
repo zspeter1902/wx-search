@@ -8,7 +8,16 @@ var format = function(text){
 var limit = function(array, length){
     return array.slice(0, length)
 }
+var interceptTime = function(time) {
+  return time.slice(5, time.length-3)
+}
+var toDecimal = function(value, limit) {
+  var num = parseFloat(value).toFixed(limit)
+  return Number(num)
+}
 module.exports = {
     format:format,
-    limit:limit
+    limit:limit,
+    interceptTime: interceptTime,
+    toDecimal: toDecimal
 }

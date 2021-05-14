@@ -64,14 +64,9 @@
 .dialog-header {
   position: relative;
 }
-.icon-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: .5;
-}
 .dialog-title {
-  margin: 20rpx 4rpx;
+  display: inline-block;
+  margin: 0rpx 4rpx 20rpx;
   color: #fff;
   font-size: 50rpx;
   line-height: 70rpx;
@@ -81,7 +76,7 @@
 }
 .dialog-input {
   height: 70rpx;
-  margin: 105rpx 32rpx 108rpx;
+  margin: 85rpx 32rpx 108rpx;
   padding: 0 40rpx;
   background-color: #fff;
   font-size: 26rpx;

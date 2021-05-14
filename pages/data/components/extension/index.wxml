@@ -1,0 +1,81 @@
+<wxs src="../../../../utils/filter.wxs" module="util"></wxs>
+<view class="info bg-white df text-center">
+  <view class="info-list-box df-auto">
+    <view class="list-title">美团</view>
+    <view class="info-list">
+      <view wx:for="{{ listArr }}" wx:for-index="key" wx:for-item="value" class="list df ai-center jc-between">
+        <text class="key text-left">{{ value }}</text>
+        <view class="no-wrap">
+          <text class="text-center value">{{ util.toDecimal(lists[key], 2) }}</text>
+          <text class="unit">{{key == 'promote_clickRate' ? '(%)' : key == 'buyerConvRate' ? '(%)' : key != 'promote_exposure' ? '(元)' : ''}}</text>
+        </view>
+      </view>
+      <view class="text-center setting" data-type="lists" bind:tap="onOpen">
+        <mp-icon class="icon-setting" icon="setting" color="#CA6FFF" size="{{16}}"></mp-icon>
+        <text>设置</text>
+      </view>
+    </view>
+  </view>
+  <view class="info-list-box df-auto">
+    <view class="list-title">饿了么</view>
+    <view class="info-list">
+      <view wx:for="{{ listArr }}" wx:for-index="key" wx:for-item="value" class="list df ai-center jc-between">
+        <text class="key text-left">{{ value }}</text>
+        <view class="no-wrap">
+          <text class="text-center value">{{ util.toDecimal(lists2[key], 2) }}</text>
+          <text class="unit">{{key == 'promote_clickRate' ? '(%)' : key == 'buyerConvRate' ? '(%)' : key != 'promote_exposure' ? '(元)' : ''}}</text>
+        </view>
+      </view>
+      <view class="text-center setting" data-type="lists2" bind:tap="onOpen">
+        <mp-icon class="icon-setting" icon="setting" color="#CA6FFF" size="{{16}}"></mp-icon>
+        <text>设置</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 弹出框 dialogShow-->
+<mp-dialog ext-class="dialog" show="{{dialogShow}}">
+  <image class="dialog-bg" src="/images/dialog_bg2.png" mode="aspectFill"/>
+  <view class="dialog-container">
+    <view class="dialog-header text-left">
+      <text class="dialog-title">设置</text>
+      <mp-icon class="icon-close" icon="close" color="white" size="{{24}}" bind:tap="onClose"></mp-icon>
+    </view>
+    <scroll-view class="dialog-content" scroll-y>
+      <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+        <view class="df ai-center form-switch">
+          <view class="form-title text-left">智能推广开关</view>
+          <z-switch checked="{{formData.promote_monitor}}" color="#3B3085" bind:switch="onSwitch" />
+        </view>
+        <mp-cells ext-class="setting-cells">
+          <mp-cell prop="promote_budget" title="今日预算:">
+            <input type="number" bindinput="formInputChange" data-field="promote_budget" value="{{formData.promote_budget}}" class="weui-input" />
+          </mp-cell>
+        </mp-cells>
+        <view class="form-title-margin form-title text-left">添加任务</view>
+        <block wx:for="{{formData.customList}}">
+           <mp-cells wx:if="{{item}}" ext-class="setting-cells setting-cells-margin setting-cells-list" wx:key="{{index}}">
+            <mp-cell title="时间选择:">
+              <!-- <input bindinput="formInputChange" data-field="mtId" class="weui-input" /> -->
+              <view class="fold {{showIndex == index ? 'current' : ''}}" data-index="{{index}}" catch:tap="onTogglePicker">
+                <text hidden="{{!formData[types[index]+'_startTime']}}">{{formData[types[index]+'_startTime']}} — {{formData[types[index]+'_endTime']}}</text>
+              </view>
+            </mp-cell>
+            <view hidden="{{showIndex != index}}" class="picker-time-box">
+              <picker-time class="picker-time" data-index="{{index}}" catch:change="onPicker" />
+            </view>
+            <!-- 不能高于3元，1位小数 -->
+            <mp-cell prop="{{types[index]}}_bid" title="基础出价:">
+              <input type="digit" bindinput="formInputChange" data-field="{{types[index]}}_bid" value="{{formData[types[index]+'_bid']}}" class="weui-input" />
+            </mp-cell>
+            <view class="delete-btn" bind:tap="onDelete" data-index="{{index}}">
+              <mp-icon class="icon-delete" icon="delete" color="white" size="{{20}}"></mp-icon>
+            </view>
+          </mp-cells>
+        </block>
+        <view class="add-btn" bind:tap="onAdd">+</view>
+      </mp-form>
+      <button class="dialog-submit" bindtap="formSubmit">确定</button>
+    </scroll-view>
+  </view>
+</mp-dialog>
