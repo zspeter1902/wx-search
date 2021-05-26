@@ -17,7 +17,7 @@ export const diagnosisHandle = (info, diagnosis, height) => {
       const item = info[i]
       const title = diagnosisTitleHandle(item.title, height + 25)
       const content = diagnosisContentHandle(item.content, height + 25 + 40 + 20)
-      itemHeight += 40 + Math.ceil(item.content.length / 24) * 36
+      itemHeight += 40 + 20 + Math.ceil(item.content.length / 28) * 36
       // business 背景阴影
       const bgShadow = businessShadowHandle('diagnosis-item' + i, itemHeight, height)
 

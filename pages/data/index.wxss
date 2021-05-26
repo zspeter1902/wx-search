@@ -1,0 +1,58 @@
+.nav-tabs {
+  position: relative;
+  /* top: -118rpx; */
+  margin: -118rpx 20rpx 0;
+  border-radius: 8rpx;
+}
+/* 更改弹窗默认样式 */
+.dialog-form {
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+.dialog .weui-dialog {
+  border-radius: 8rpx;
+  background-color: #CA6FFF;
+}
+.dialog .weui-dialog__ft,
+.dialog .weui-dialog__hd {
+  display: none !important;
+}
+.dialog .weui-dialog__bd {
+  padding: 50rpx 28rpx 32rpx;
+  margin-bottom: 0;
+}
+.dialog .dialog-header .icon-close {
+  position: absolute;
+  top: -20rpx;
+  right: 0;
+  opacity: .5;
+}
+/* mp-cells */
+.setting-cells .weui-cells{
+  margin-top: 10rpx;
+  background-color: transparent;
+}
+.setting-cells .cell--weui-cell_wxss.cell--weui-cell_wxss:before,
+.setting-cells .weui-cells:after, .setting-cells .weui-cells:before {
+  display: none;
+}
+.setting-cells .weui-cell {
+  width: 520rpx;
+  padding: 5rpx 24rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+.setting-cells .weui-label {
+  width: 140rpx;
+  color: #3B3085;
+}
+.setting-cells .weui-input {
+  height: 60rpx;
+  min-height: 60rpx;
+  line-height: 60rpx;
+}
+.setting-cells-margin {
+  margin-bottom: 10rpx;
+  overflow: hidden;
+}

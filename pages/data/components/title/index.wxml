@@ -1,0 +1,9 @@
+<!--pages/data/components/base/index.wxml-->
+<view class="custom-title">
+  <text>{{title}}</text>
+  <view>
+    <view wx:if="{{button}}" class="switch {{checked ? 'switch-checked' : ''}}" bind:tap="onSwitch">
+      <view></view>
+    </view>
+  </view>
+</view>

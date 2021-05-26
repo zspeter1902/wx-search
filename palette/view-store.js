@@ -44,7 +44,7 @@ export const storeHandle = (info, bannerH1, bannerH2) => {
     height += bannerH1 + 30
   }
   if (bannerH2) {
-    view.push(bannerHandle(info.posters[1], height + 30 + 18 + bannerH1))
+    view.push(bannerHandle(info.posters[1], height + 18))
     height += bannerH2 + 18
   }
   // 餐品列表

@@ -43,7 +43,8 @@ export const businessHandle = (info, business, height) => {
         activityArr.push(tagHandle(ai, item.activities[ai], 'business-activity-'+i, height + 40 + 200 + 20 - 4))
         activityArr.push(tagContentHandle(ai, item.activities[ai], 'business-activity-'+i, height + 40 + 200 + 20))
       }
-      itemHeight += 20 + 40 + (56 * Math.floor(activityLen / 4))
+      const al = activityLen - 1 >= 0 ? activityLen - 1 : 0
+      itemHeight += 20 + 40 + (56 * Math.floor(al / 4))
       // business 背景阴影
       const bgShadow = businessShadowHandle('business-item' + i, itemHeight, height)
       // 加入view数组

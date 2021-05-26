@@ -1,0 +1,15 @@
+<!-- 时间段 -->
+<view class="picker-group">
+  <picker mode="time" value="{{time}}" start="00:00" end="{{time2}}" bindchange="bindTimeChange">
+    <view class="picker {{time ? '' : 'placeholder'}}">
+      {{time ? time : '开始时间'}}
+    </view>
+  </picker>
+  <text class="arrow"></text>
+  <picker mode="time" value="{{time2}}" start="{{time}}" end="24:00" bindchange="bindTimeChange2">
+    <view class="picker {{time2 ? '' : 'placeholder'}}">
+      {{time2 ? time2 : '结束时间'}}
+    </view>
+  </picker>
+  <mp-icon class="icon-time" icon="time" size="{{16}}" color="#bfbfbf"></mp-icon>
+</view>

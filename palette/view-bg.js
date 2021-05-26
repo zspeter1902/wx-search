@@ -23,14 +23,26 @@ export const background = [
     }
   },
   {
-    type: 'text',
-    text: "商圈查",
-    css: [{
-      width: '750rpx',
-      top: `50rpx`,
-      fontSize: '36rpx',
-      textAlign: 'center',
-      lineHeight: '50rpx',
-    }, commonColor],
+    type: 'image',
+    url: '/images/logo.png',
+    css: {
+      top: '50rpx',
+      left: '375rpx',
+      width: '222rpx',
+      height: 'auto',
+      align: 'center',
+      mode: 'aspectFill'
+    }
   }
+  // {
+  //   type: 'text',
+  //   text: "商圈查",
+  //   css: [{
+  //     width: '750rpx',
+  //     top: `50rpx`,
+  //     fontSize: '36rpx',
+  //     textAlign: 'center',
+  //     lineHeight: '50rpx',
+  //   }, commonColor],
+  // }
 ]

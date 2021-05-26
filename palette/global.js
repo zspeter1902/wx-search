@@ -148,15 +148,16 @@ const tagContentHandle = (index, content, posID, height) => {
   return tagContent;
 }
 // banner
-const bannerHandle = (img, top) => {
+const bannerHandle = (img, posTop) => {
   return {
     type: 'image',
     url: img,
     css: {
-      top: `${top}rpx`,
+      top: `${posTop}rpx`,
       left: `${startLeft}rpx`,
       width: '678rpx',
-      height: 'auto'
+      height: 'auto',
+      scalable: true
     }
   }
 }

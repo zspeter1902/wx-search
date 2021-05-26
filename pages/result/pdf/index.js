@@ -17,7 +17,8 @@ Page({
     src: '',
     paintPallette: null,
     isAuthorize: false,
-    watermarkNum: 1
+    watermarkNum: 1,
+    isSave: false
   },
   //options(Object)
   onLoad: function(options){
@@ -38,7 +39,6 @@ Page({
         this.getInfo()
       })
     }
-    this.calcWaterMarkNum()
   },
   calcWaterMarkNum() {
     wx.createSelectorQuery().select('.watermark').boundingClientRect((rect) => {
@@ -79,8 +79,15 @@ Page({
     // }).exec()
   },
   onImgOK(e) {
-    this.data.src = e.detail.path;
-    console.log(this.data.src)
+    setTimeout(() => {
+      wx.hideLoading();
+      this.data.src = e.detail.path;
+      if (this.data.isSave) {
+        this.data.isSave = false
+        this.onSave()
+      }
+      console.log(this.data.src)
+    }, 1500)
   },
   onSave() {
     const that = this
@@ -99,7 +106,12 @@ Page({
               filePath: that.data.src,
             });
           } else {
-            this.getInfo()
+            that.data.isSave = true
+            wx.showLoading({
+              title: '保存中',
+              mask: true,
+            });
+            // that.getInfo()
           }
         }
       }

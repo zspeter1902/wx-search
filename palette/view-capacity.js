@@ -23,7 +23,7 @@ export const capacityHandle = (info, capacity, height) => {
       }
       itemHeight += 38
       const content = diagnosisContentHandle(item.content, height + 26 + 38 + 32)
-      itemHeight += 32 + Math.ceil(item.content.length / 24) * 36
+      itemHeight += 32 + Math.ceil(item.content.length / 28) * 36
       // business 背景阴影
       const bgShadow = businessShadowHandle('capacity-item' + i, itemHeight, height)
       // 加入view数组

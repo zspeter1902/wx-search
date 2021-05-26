@@ -34,6 +34,15 @@ Page({
   //options(Object)
   onLoad: function(options){
     // 获取信息
+    const region = wx.getStorageSync('region')
+    const province = region[0].replace(/['省', '市']/g, '')
+    const city = region[1].replace('市', '')
+    this.setData({
+      region: region,
+      ['formData.province']: province,
+      ['formData.city']: city
+    })
+
   },
   openMap(e) {
     let that = this;
@@ -175,6 +184,7 @@ Page({
         delete cacheData.code
         wx.setStorageSync('formData', cacheData);
         wx.setStorageSync('platformIndex', this.data.platformIndex);
+        wx.setStorageSync('region', this.data.region);
         wx.setStorageSync('code', data.code)
         _fun[type]()
       }).catch(err => {
@@ -207,6 +217,9 @@ Page({
   onReady: function() {
   },
   onShow: function() {
+    this.setData({
+      platformIndex: wx.getStorageSync('platformIndex')
+    })
   },
   onHide: function() {
   },
