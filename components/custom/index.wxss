@@ -23,3 +23,8 @@
   max-height: 70rpx;
   margin: 0 auto;
 }
+.commonHead_name {
+  color: #333;
+  font-size: 36rpx;
+  line-height: 50rpx;
+}

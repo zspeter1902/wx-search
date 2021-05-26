@@ -1,0 +1,15 @@
+/* pages/store/setting/index.wxss */
+.button{
+  width: 80% !important;
+  height: 90rpx;
+  margin: 130rpx 20rpx;
+  padding: 0;
+  min-height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  font-weight: normal;
+  color: #fff;
+  border-radius: 50rpx;
+  background: linear-gradient(134deg, #FFB756 0%, #FA8220 100%);
+  box-shadow: 1rpx 4rpx 16rpx 0rpx rgba(177, 177, 177, 0.5);
+}

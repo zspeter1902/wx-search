@@ -1,0 +1,46 @@
+<!-- 自定义顶部条 -->
+<custom />
+<mp-loading ext-class="loading-center" show="{{loading}}" type="dot-gray"/>
+<z-layout>
+  <!-- 店铺信息 -->
+  <view class="result-title font-bold">店铺信息</view>
+  <store store="{{storeInfo}}" />
+  <!-- 商圈店铺信息 -->
+  <view class="result-title font-bold">商圈店铺信息</view>
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <checkbox-group class="relation"  bindchange="checkboxChange">
+      <label wx:for="{{checkboxItems}}" wx:key="{{item.rest_id}}" class="relation-item">
+        <checkbox class="checkbox" value="{{index}}">
+        </checkbox>
+        <store store="{{item}}" pic="{{false}}" />
+      </label>
+    </checkbox-group>
+    <!-- 店铺诊断 -->
+    <view class="result-title font-bold">店铺诊断</view>
+    <view class="diagnosis bg-white">
+      <checkbox-group class="diagnosis-checkbox df fw-wrap jc-between" bindchange="checkboxChangeDiagnosis">
+        <label wx:for="{{diagnosisList}}" wx:for-item="item" wx:key="{{item.id}}" class="diagnosis-item">
+          <checkbox value="{{index}}" />
+          <text>{{item.title}}</text>
+        </label>
+      </checkbox-group>
+    </view>
+    <!-- 商圈容量 -->
+    <view class="result-title font-bold">商圈容量</view>
+    <view class="capacity bg-white">
+      <radio-group class="capacity-radios" bindchange="radioChangeCapacity">
+        <label wx:for="{{capacityList}}" wx:for-item="item" wx:key="{{item.id}}" class="capacity-item">
+          <radio value="{{index}}" />
+          <mp-icon wx:for="{{capacityEntries[item.title]}}" type="field" icon="star" color="#EA9518" size="{{25}}"></mp-icon>
+        </label>
+      </radio-group>
+    </view>
+
+    <view class="ovh">
+      <button
+        class="form-submit"
+        bindtap="formSubmit"
+        hover-class="button-hover">生成报告</button>
+    </view>
+  </mp-form>
+</z-layout>

@@ -1,0 +1,63 @@
+<!-- 自定义顶部条 -->
+<wxs src="../../../utils/filter.wxs" module="util"></wxs>
+<custom />
+<z-layout class="layout">
+  <!-- 店铺信息 -->
+  <view class="result-title font-bold">店铺信息</view>
+  <store store="{{storeInfo}}" />
+  <!-- 商圈店铺信息 -->
+  <view class="result-title font-bold">商圈店铺信息</view>
+  <view class="relation">
+    <block wx:for="{{checkboxItems}}" wx:key="{{item.rest_id}}">
+      <view wx:if="{{util.contain(formData.business, index)}}" class="relation-item">
+        <store store="{{item}}" pic="{{false}}" />
+      </view>
+    </block>
+  </view>
+  <!-- 店铺诊断 -->
+  <view class="result-title font-bold">店铺诊断</view>
+  <view class="diagnosis">
+    <block wx:for="{{diagnosisList}}" wx:key="{{item.id}}">
+      <view wx:if="{{util.contain(formData.diagnosis, index)}}" class="diagnosis-item bg-white">
+        <view class="diagnosis-name">{{item.title}}</view>
+        <view class="diagnosis-desc">{{item.content}}</view>
+      </view>
+    </block>
+  </view>
+  <!-- 商圈容量 -->
+  <view class="result-title font-bold">商圈容量</view>
+  <view class="capacity bg-white">
+    <block wx:for="{{capacityList}}" wx:key="{{item.id}}">
+      <view wx:if="{{index == formData.capacity }}" class="capacity-item">
+        <mp-icon wx:for="{{capacityEntries[item.title]}}" type="field" icon="star" color="#EA9518" size="{{25}}"></mp-icon>
+        <view class="capacity-desc">
+          {{item.content}}
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="ovh">
+    <button
+      hidden="{{isAuthorize}}"
+      class="form-submit"
+      bindtap="onSave"
+      hover-class="button-hover">保存图片</button>
+    <button
+      hidden="{{!isAuthorize}}"
+      class="form-submit"
+      open-type="openSetting"
+      bindopensetting="openSetting"
+      hover-class="button-hover">授权</button>
+  </view>
+  <view class="watermark">
+    <image wx:for="{{watermarkNum}}" class="img" src="/images/watermark.png" mode="aspectFill"></image>
+  </view>
+</z-layout>
+<view class="painter">
+  <painter
+    palette="{{paintPallette}}"
+    bind:imgOK="onImgOK"
+    bind:touchEnd="touchEnd"
+    widthPixels="1000"
+  />
+</view>

@@ -1,0 +1,4 @@
+<!--pages/store/setting/index.wxml-->
+<button class="button" open-type="openSetting">
+打开授权设置页
+</button>

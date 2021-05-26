@@ -23,7 +23,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": false,
+    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -41,8 +41,8 @@
   },
   "compileType": "miniprogram",
   "libVersion": "2.12.3",
-  "appid": "wx0503ec2671385574",
-  "projectname": "wx-store-detail",
+  "appid": "wxc0b6870e7167a09e",
+  "projectname": "wx-search",
   "debugOptions": {
     "hidedInDevtools": []
   },

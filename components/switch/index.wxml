@@ -1,3 +1,0 @@
-<view class="switch {{isSwitch ? 'switch-checked' : ''}}" bind:tap="onSwitch" style="background-color: {{color}};">
-  <view></view>
-</view>

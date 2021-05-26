@@ -1,0 +1,8 @@
+<!-- 布局 -->
+<view class="container" style="padding-top: {{statusBarHeight}}px">
+  <image class="bg-top" src="/images/bg_top.png" mode="aspectFit"></image>
+  <view class="content">
+    <slot />
+  </view>
+  <image class="bg-bottom" src="/images/bg_bottom.png" mode="widthFix"></image>
+</view>

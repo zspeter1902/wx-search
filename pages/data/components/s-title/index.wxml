@@ -1,5 +1,0 @@
-<!--pages/data/components/base/index.wxml-->
-<view class="custom-title">
-  <text>{{title}}</text>
-  <text></text>
-</view>

@@ -1,0 +1,47 @@
+<!-- 自定义顶部条 -->
+<custom />
+<!-- 数据展示 -->
+<z-layout>
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells ext-class="my-cells">
+        <mp-cell prop="address" title="" ext-class="">
+          <!-- <input bindinput="formInputChange" data-field="address" placeholder="输入商家商铺地址" class="weui-input" /> -->
+          <view bind:tap="openMap">
+            <view class="weui-input ellipsis" hidden="{{!formData.address}}">{{formData.address}}</view>
+            <view class="weui-input input-placeholder" hidden="{{formData.address}}">输入商家商铺地址</view>
+          </view>
+        </mp-cell>
+        <mp-cell prop="name" title="">
+          <input bindinput="formInputChange" data-field="name" value="{{formData.name}}" placeholder="输入商家店铺名" class="weui-input" />
+        </mp-cell>
+        <mp-cell prop="region" title="">
+          <picker class="fold" mode="region" bindchange="bindRegionChange" value="{{region}}">
+            <view hidden="{{!region.length}}" class="picker weui-input ellipsis">
+              {{region[0]}}，{{region[1]}}，{{region[2]}}
+            </view>
+            <view hidden="{{region.length}}" class="weui-input input-placeholder">选择省市</view>
+          </picker>
+        </mp-cell>
+        <mp-cell prop="platform" title="">
+          <picker class="fold"  bindchange="bindPickerChange" value="{{platformIndex}}" range="{{platformArray}}" range-key="">
+            <view hidden="{{!platformArray[platformIndex]}}" class="picker weui-input">
+              {{platformArray[platformIndex]}}
+            </view>
+            <view hidden="{{platformArray[platformIndex]}}" class="weui-input input-placeholder">选择平台</view>
+          </picker>
+        </mp-cell>
+      </mp-cells>
+      <mp-cells ext-class="my-cells my-cells-code">
+        <mp-cell prop="code" title="">
+          <input bindinput="formInputChange" data-field="code" value="{{formData.code}}" placeholder="输入天海邀请码" class="weui-input" />
+        </mp-cell>
+      </mp-cells>
+      <view class="my-cell-btn">
+        <button
+          class="form-submit"
+          bindtap="formSubmit"
+          loading="{{loading}}"
+          hover-class="button-hover">搜索店铺</button>
+      </view>
+    </mp-form>
+</z-layout>

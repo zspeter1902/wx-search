@@ -1,0 +1,36 @@
+<!-- 自定义顶部条 -->
+<custom />
+<!-- 数据展示 -->
+<mp-loading ext-class="loading-center" show="{{loading}}" type="dot-gray"/>
+<z-layout>
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells ext-class="my-cells">
+        <mp-cell wx:if="{{platformArray[platformIndex] == '美团'}}" prop="region" title="" ext-class="my-cell">
+          <picker class="fold"  bindchange="bindPickerChange" value="{{typeIndex}}" range="{{typeArray}}" range-key="category_name">
+            <view hidden="{{!typeArray[typeIndex]}}" class="picker weui-input">
+              {{typeArray[typeIndex].category_name}}
+            </view>
+            <view hidden="{{typeArray[typeIndex]}}" class="weui-input input-placeholder">选择品类</view>
+          </picker>
+        </mp-cell>
+        <scroll-view scroll-y class="scroll">
+          <mp-cell prop="index" title="">
+            <radio-group bindchange="radioChange">
+              <label wx:for="{{lists}}" wx:for-item="item" wx:key="{{item.rest_id}}" class="weui-cell weui-check__label">
+                <view class="weui-cell__hd">
+                  <radio color="#FA8623" value="{{index}}" checked="{{item.rest_name === formData.name}}" />
+                </view>
+                <view class="weui-cell__bd text-left">{{item.rest_name}}</view>
+              </label>
+            </radio-group>
+          </mp-cell>
+        </scroll-view>
+      </mp-cells>
+      <view class="my-cell-btn">
+        <button
+          class="form-submit"
+          bindtap="formSubmit"
+          hover-class="button-hover">确定</button>
+      </view>
+    </mp-form>
+</z-layout>

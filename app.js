@@ -1,23 +1,18 @@
 // app.js
 import {config} from './config.js'
-import {toAsync} from './utils/async.js'
 App({
   onLaunch() {
-    // 私有方法
-    wx.async = toAsync
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     if (logs.length >= 3) {
       logs.splice(2)
     }
+    const platformArray = wx.getStorageSync('platformArray')
+    if (!platformArray) {
+      wx.setStorageSync('platformArray', ['美团', '饿了么'])
+    }
     wx.setStorageSync('logs', logs)
-    // const token = wx.getStorageSync('token');
-    // if (!!token) {
-    //   wx.switchTab({
-    //     url: 'pages/data/index'
-    //   })
-    // }
     // 版本更新
     this.update();
   },
@@ -56,7 +51,6 @@ App({
     }
   },
   globalData: {
-    current: 0,
     picUrl: config.picUrl,
     copyright: config.copyright
   }

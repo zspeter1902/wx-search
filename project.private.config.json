@@ -13,14 +13,21 @@
     "miniprogram": {
       "list": [
         {
-          "name": "我的",
-          "pathName": "pages/my/index",
+          "name": "选择",
+          "pathName": "pages/select/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "数据",
-          "pathName": "pages/data/index",
+          "name": "搜索结果",
+          "pathName": "pages/result/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "生成报告",
+          "pathName": "pages/result/pdf/index",
+          "query": "",
           "scene": null
         }
       ]

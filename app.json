@@ -1,27 +1,36 @@
 {
-  "pages":[
-    "pages/my/index",
-    "pages/data/index"
+  "pages": [
+    "pages/index/index",
+    "pages/setting/index",
+    "pages/select/index",
+    "pages/result/index",
+    "pages/result/pdf/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于小程序定位"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "管理",
-    "navigationBarTextStyle":"black",
+    "navigationBarTitleText": "商圈查",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "custom",
     "enablePullDownRefresh": false
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
-        "pagePath": "pages/data/index",
-        "text": "数据",
+        "pagePath": "pages/index/index",
+        "text": "商圈查",
         "iconPath": "images/tabbar/data.png",
         "selectedIconPath": "images/tabbar/data_checked.png"
       },
       {
-        "pagePath": "pages/my/index",
-        "text": "我的",
+        "pagePath": "pages/setting/index",
+        "text": "设置",
         "iconPath": "images/tabbar/my.png",
         "selectedIconPath": "images/tabbar/my_checked.png"
       }

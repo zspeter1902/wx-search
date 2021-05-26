@@ -1,6 +1,7 @@
 <!-- pages/list/components/custom/index.wxml -->
 <cover-view class='commonHead custom-class' style="padding-top: {{statusBarHeight + 5}}px">
   <cover-view class='commonHead_content'>
+    <!-- <cover-view class="commonHead_name">商圈查</cover-view> -->
     <cover-image class="commonHead_img" src="../../images/logo.png" />
   </cover-view>
 </cover-view>

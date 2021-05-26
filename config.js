@@ -1,6 +1,8 @@
 const config = {
-    api_base_url: "https://www.thwaimai.cn/shop_info/index.php/",
+    api_base_url: "https://www.thwaimai.cn/shop_info/index.php/business/",
+    api_base_url2: "https://www.thwaimai.cn/business_search/",
     picUrl: "https://www.thwaimai.cn/shop_info/index.php/"
 }
-//wxbfc93599a1df44a4 wxb522552bc7bd77be
+//wxc0b6870e7167a09e
+
 export { config }

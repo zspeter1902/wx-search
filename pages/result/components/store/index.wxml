@@ -1,0 +1,40 @@
+<!--pages/result/components/store/index.wxml-->
+<view class="store">
+  <view class="df">
+    <image class="store-logo" src="{{store.logo}}" mode="aspectFit"></image>
+    <view class="df df-auto flex-column jc-between store-base ovh">
+      <view class="ellipsis"><text class="font-bold">店铺名称：</text>{{ store.rest_name }}</view>
+      <view><text class="font-bold">营业时间：</text>{{ store.opening_hours }}</view>
+      <view class="df">
+        <view><text class="font-bold">店铺评分：</text>{{ store.score }}</view>
+        <view class="base-margin"><text class="font-bold">店铺月销：</text>{{ store.monthly_sales }}</view>
+      </view>
+      <view><text class="font-bold">配送方式：</text>{{ store.deliveryMode }}<text class="base-margin">{{ store.min_price_tip }} {{ store.shipping_fee_tip }}</text></view>
+    </view>
+  </view>
+  <!-- 活动 -->
+  <view class="store-activity df">
+    <text class="font-bold">活动：</text>
+    <view class="df-auto">
+      <text class="tag" wx:for="{{store.activities}}">{{item}}</text>
+    </view>
+  </view>
+  <!-- <view class="store-activity df">
+    <text class="font-bold">活动：</text>
+    <view class="df-auto">5.8元特价；2元店铺红包；吃货联盟；食无忧</view>
+  </view> -->
+  <!-- banner -->
+  <view wx:if="{{pic}}" class="store-banner">
+    <block wx:for="{{store.posters}}">
+      <image wx:if="{{index < 2}}" class="store-banner-pic" src="{{item}}" mode="widthFix">
+      </image>
+    </block>
+  </view>
+  <!-- 餐品图片 -->
+  <view wx:if="{{pic}}" class="df fw-wrap jc-between">
+    <block wx:for="{{store.skuPicture}}">
+      <image wx:if="{{index < 8}}" class="store-pic" src="{{item}}" mode="aspectFit">
+      </image>
+    </block>
+  </view>
+</view>

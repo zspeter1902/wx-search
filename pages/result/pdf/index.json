@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "z-layout": "/components/layout/index",
+    "store": "../components/store/index",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "painter":"/components/painter/painter"
+  }
+}

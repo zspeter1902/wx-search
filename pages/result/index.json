@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "z-layout": "/components/layout/index",
+    "store": "./components/store/index",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-loading": "weui-miniprogram/loading/loading"
+  }
+}

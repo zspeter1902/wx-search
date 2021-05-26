@@ -1,6 +1,3 @@
-import { config } from '../config.js'
-import { login } from './login.js'
-const Login = new login();
 // # 解构
 class HTTP {
   request({ url, data = {}, method = 'GET' }) {
@@ -10,23 +7,15 @@ class HTTP {
     });
   }
   _request(url, resolve, reject, data = {}, method = 'GET') {
-    const token = wx.getStorageSync('token');
     const header = {
       'Content-Type': 'application/json',
       'Cache-Control': 'max-age=60' //60秒
     }
-    if (token) header['Authorization'] = token
-    const pages = getCurrentPages()
-    if (!token && pages[pages.length - 1].route !== 'pages/my/index') {
-      wx.showToast({
-        icon: 'none',
-        title: '您尚未登录！',
-        duration: 3000
-      })
-      return
+    if (method.toLowerCase() === 'post') {
+      header["Content-Type"] = 'application/x-www-form-urlencoded'
     }
     wx.request({
-      url: config.api_base_url + url,
+      url: url,
       method: method,
       data: data,
       header: header,
@@ -35,25 +24,6 @@ class HTTP {
         if (code.startsWith('2')) {
           if (res.data.code == '200') {
             resolve(res.data.result)
-          } else if (res.data.code == '10001') {
-            wx.removeStorageSync('token');
-            wx.removeStorageSync('openId');
-            Login.wxLogin(() => {
-              this._request(url, resolve, reject, data, method)
-            })
-          } else if (res.data.code == '303') {
-            wx.showToast({
-              icon: 'none',
-              title: res.data.msg,
-              duration: 6000,
-              success: () => {
-                setTimeout(() => {
-                  wx.switchTab({
-                    url: '/pages/my/index'
-                  });
-                }, 6000)
-              }
-            })
           } else {
             reject(res.data.msg)
           }
