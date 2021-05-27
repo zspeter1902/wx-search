@@ -27,8 +27,8 @@
         {
           "name": "生成报告",
           "pathName": "pages/result/pdf/index",
-          "query": "",
-          "scene": null
+          "query": "platformIndex=0&address=合肥市高新区蜀南庭苑商业街11#108-1室一层商铺&latitude=31.828763&longitude=117.163625&province=安徽&city=合肥&deliveryMode=美团专送&deliveryTime=30分钟&distance=&logo=https://p0.meituan.net/business/42319fd99886f5e0b61795cce5bb0fbd87119.jpg@130w_130h_1e_1c&min_price_tip=起送 ¥15&monthly_sales=2559&opening_hours=00:00-01:30,09:00-23:59&rest_id=1108253116616246&rest_name=香当好吃黄焖鸡米饭&score=4.8&shipping_fee_tip=免配送费&activities=[\"减6\",\"6减5\",\"22减9\",\"32减11\",\"52减18\",\"82减22\",\"0.63折起\",\"领1元券\",\"领3元券\",\"领5元券\"]&category=快餐便当&business=[0,7,8]&diagnosis=[3,1,6,4]&capacity=2",
+          "scene": 1007
         }
       ]
     }

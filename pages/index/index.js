@@ -1,14 +1,12 @@
 //index.js
 //获取应用实例
-import util from '../../utils/util.js';
 import {userModel} from '../../models/user.js';
 const user = new userModel()
 //Page Object
 Page({
   data: {
-    region: [],
     platformArray: wx.getStorageSync('platformArray'),
-    platformIndex: null,
+    platformIndex: wx.getStorageSync('platformIndex') || null,
     formData: {
       code: wx.getStorageSync('code')
     },
@@ -34,15 +32,6 @@ Page({
   //options(Object)
   onLoad: function(options){
     // 获取信息
-    const region = wx.getStorageSync('region')
-    const province = region[0].replace(/['省', '市']/g, '')
-    const city = region[1].replace('市', '')
-    this.setData({
-      region: region,
-      ['formData.province']: province,
-      ['formData.city']: city
-    })
-
   },
   openMap(e) {
     let that = this;
@@ -65,11 +54,20 @@ Page({
         } else {
           wx.chooseLocation({
             success: (res) => {
-              that.setData({
-                [`formData.address`]: res.address,
-                [`formData.latitude`]: res.latitude.toFixed(6),
-                [`formData.longitude`]: res.longitude.toFixed(6)
-              })
+              const address = res.address
+              const reg = /.+?(省|市|盟|自治区)/g
+              if (address) {
+                const arr = address.match(reg)
+                const province = arr[0].replace(/['省', '市', '自治区']/g, '')
+                const city = arr[1].replace('市', '')
+                that.setData({
+                  [`formData.address`]: res.address,
+                  [`formData.latitude`]: res.latitude.toFixed(6),
+                  [`formData.longitude`]: res.longitude.toFixed(6),
+                  ['formData.province']: province,
+                  ['formData.city']: city
+                })
+              }
             }
           })
         }
@@ -95,16 +93,6 @@ Page({
     const {field} = e.currentTarget.dataset
     this.setData({
         [`formData.${field}`]: e.detail.value
-    })
-  },
-  bindRegionChange(e) {
-    const region = e.detail.value
-    const province = region[0].replace(/['省', '市']/g, '')
-    const city = region[1].replace('市', '')
-    this.setData({
-      ['formData.province']: province,
-      ['formData.city']: city,
-      region: region
     })
   },
   bindPickerChange(e) {
@@ -184,7 +172,6 @@ Page({
         delete cacheData.code
         wx.setStorageSync('formData', cacheData);
         wx.setStorageSync('platformIndex', this.data.platformIndex);
-        wx.setStorageSync('region', this.data.region);
         wx.setStorageSync('code', data.code)
         _fun[type]()
       }).catch(err => {
@@ -217,9 +204,9 @@ Page({
   onReady: function() {
   },
   onShow: function() {
-    this.setData({
-      platformIndex: wx.getStorageSync('platformIndex')
-    })
+    // this.setData({
+    //   platformIndex: wx.getStorageSync('platformIndex')
+    // })
   },
   onHide: function() {
   },

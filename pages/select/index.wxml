@@ -5,7 +5,7 @@
 <z-layout>
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
       <mp-cells ext-class="my-cells">
-        <mp-cell wx:if="{{platformArray[platformIndex] == '美团'}}" prop="region" title="" ext-class="my-cell">
+        <mp-cell wx:if="{{platformArray[platformIndex] == '美团'}}" prop="type" title="" ext-class="my-cell">
           <picker class="fold"  bindchange="bindPickerChange" value="{{typeIndex}}" range="{{typeArray}}" range-key="category_name">
             <view hidden="{{!typeArray[typeIndex]}}" class="picker weui-input">
               {{typeArray[typeIndex].category_name}}

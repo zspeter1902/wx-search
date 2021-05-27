@@ -1,6 +1,7 @@
 <!-- 自定义顶部条 -->
 <wxs src="../../../utils/filter.wxs" module="util"></wxs>
 <custom />
+<mp-loading ext-class="loading-center" show="{{loading}}" type="dot-gray"/>
 <z-layout class="layout">
   <!-- 店铺信息 -->
   <view class="result-title font-bold">店铺信息</view>
@@ -58,6 +59,6 @@
     palette="{{paintPallette}}"
     bind:imgOK="onImgOK"
     bind:touchEnd="touchEnd"
-    widthPixels="1000"
+    widthPixels="750"
   />
 </view>

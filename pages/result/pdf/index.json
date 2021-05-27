@@ -3,6 +3,7 @@
     "z-layout": "/components/layout/index",
     "store": "../components/store/index",
     "mp-icon": "weui-miniprogram/icon/icon",
-    "painter":"/components/painter/painter"
+    "painter":"/components/painter/painter",
+    "mp-loading": "weui-miniprogram/loading/loading"
   }
 }

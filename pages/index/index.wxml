@@ -14,14 +14,6 @@
         <mp-cell prop="name" title="">
           <input bindinput="formInputChange" data-field="name" value="{{formData.name}}" placeholder="输入商家店铺名" class="weui-input" />
         </mp-cell>
-        <mp-cell prop="region" title="">
-          <picker class="fold" mode="region" bindchange="bindRegionChange" value="{{region}}">
-            <view hidden="{{!region.length}}" class="picker weui-input ellipsis">
-              {{region[0]}}，{{region[1]}}，{{region[2]}}
-            </view>
-            <view hidden="{{region.length}}" class="weui-input input-placeholder">选择省市</view>
-          </picker>
-        </mp-cell>
         <mp-cell prop="platform" title="">
           <picker class="fold"  bindchange="bindPickerChange" value="{{platformIndex}}" range="{{platformArray}}" range-key="">
             <view hidden="{{!platformArray[platformIndex]}}" class="picker weui-input">

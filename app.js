@@ -10,7 +10,7 @@ App({
     }
     const platformArray = wx.getStorageSync('platformArray')
     if (!platformArray) {
-      wx.setStorageSync('platformArray', ['美团', '饿了么'])
+      wx.setStorageSync('platformArray', this.globalData.platArray)
     }
     wx.setStorageSync('logs', logs)
     // 版本更新
@@ -52,6 +52,7 @@ App({
   },
   globalData: {
     picUrl: config.picUrl,
+    platArray: ['美团', '饿了么'],
     copyright: config.copyright
   }
 })
