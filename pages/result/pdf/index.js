@@ -20,6 +20,7 @@ Page({
     paintPallette: null,
     isAuthorize: false,
     watermarkNum: 1,
+    scaleRatio: wx.getSystemInfoSync()['pixelRatio'],
     isSave: false,
     loading: false
   },
@@ -293,7 +294,6 @@ Page({
     for (const key in pathData) {
       params += key + '=' + pathData[key] + '&'
     }
-    console.log(params.slice(0, -1))
     return {
       title: storeInfo.rest_name,
       path: `${pagePath}?` + params.slice(0, -1),
