@@ -51,9 +51,15 @@ export default class DownLoadFile {
     const watermark = watermarkHandle(capacityHeight+220)
     const watermarkView = watermark.view
     // return
+    const platform = wx.getSystemInfoSync()['platform']
+    const pixelRatio = wx.getSystemInfoSync()['pixelRatio']
+    let screenK = 750
+    if (platform.indexOf('windows') != -1) {
+      screenK = 750 / (1 / pixelRatio)
+    }
     return ({
-      width: '750rpx',
-      height: `${capacityHeight + 220}rpx`,
+      width: `${screenK}rpx`,
+      height: `${capacityHeight + 120}rpx`,
       background: '#fff',
       views: [...background, ...storeView, ...businessView, ...diagnosisView, ...capacityView, ...watermarkView],
     });

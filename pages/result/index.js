@@ -22,10 +22,8 @@ Page({
     diagnosisList: [],
     capacityList: [],
     formData: {},
+    checked: true,
     rules: [{
-      name: 'business',
-      rules: [{type: Array, message: '请选择店铺'},{minlength: 1, message: '最少一个店铺'},{maxlength: 3, message: '最多三个店铺'}]
-    }, {
       name: 'diagnosis',
       rules: [{type: Array, minlength: 1, message: '请选择店铺诊断'}]
     }, {
@@ -99,6 +97,11 @@ Page({
       capacityList: info.capacity
     })
   },
+  onSwitch(e) {
+    this.setData({
+      'checked': e.detail
+    })
+  },
   checkboxChange (e) {
     // 最多选中3个
     if (this.data.formData.business && this.data.formData.business.length >= 3) {
@@ -123,6 +126,8 @@ Page({
   },
   formSubmit(e) {
     this.selectComponent('#form').validate((valid, errors) => {
+      const business = this.data.formData.business
+      const checked = this.data.checked
       if (!valid) {
         const firstError = Object.keys(errors)
         if (firstError.length) {
@@ -130,6 +135,20 @@ Page({
             icon: 'error',
             title: errors[firstError[0]].message
           })
+        }
+      } else if (checked) {
+        if (!business || !business.length) {
+          wx.showToast({
+            icon: 'error',
+            title: '请选择店铺'
+          })
+        } else if (business.length > 3) {
+          wx.showToast({
+            icon: 'error',
+            title: '最多三个店铺'
+          })
+        } else {
+          this.onHttpSubmit()
         }
       } else {
         this.onHttpSubmit()

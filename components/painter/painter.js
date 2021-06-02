@@ -689,7 +689,7 @@ Component({
           this.canvasHeightInPx = height.toPx();
           needScale = needScale || this.properties.use2D;
         }
-        
+
         if (!this.photoContext) {
           this.photoContext = await this.getCanvasContext(this.properties.use2D, 'photo');
         }
@@ -699,7 +699,7 @@ Component({
           this.photoContext.height = this.canvasHeightInPx * scale;
           this.photoContext.scale(scale, scale);
         }
-        
+
         this.setData({
           photoStyle: `width:${this.canvasWidthInPx}px;height:${this.canvasHeightInPx}px;`,
         }, () => {

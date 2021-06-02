@@ -7,8 +7,8 @@
   <view class="result-title font-bold">店铺信息</view>
   <store store="{{storeInfo}}" />
   <!-- 商圈店铺信息 -->
-  <view class="result-title font-bold">商圈店铺信息</view>
-  <view class="relation">
+  <view hidden="{{!formData.business.length}}" class="result-title font-bold">商圈店铺信息</view>
+  <view hidden="{{!formData.business.length}}" class="relation">
     <block wx:for="{{checkboxItems}}" wx:key="{{item.rest_id}}">
       <view wx:if="{{util.contain(formData.business, index)}}" class="relation-item">
         <store store="{{item}}" pic="{{false}}" />

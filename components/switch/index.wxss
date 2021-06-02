@@ -1,7 +1,7 @@
 .switch {
   position: relative;
-  width: 108rpx;
-  height: 58rpx;
+  width: 88rpx;
+  height: 48rpx;
   border-radius: 30rpx;
   /* background-color: #CA6FFF; */
 }
@@ -22,8 +22,8 @@
   top: 0;
   left: 4rpx;
   bottom: 0;
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
   margin: auto 0;
   border-radius: 50%;
   background: #fff;

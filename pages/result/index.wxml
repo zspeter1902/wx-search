@@ -6,7 +6,14 @@
   <view class="result-title font-bold">店铺信息</view>
   <store store="{{storeInfo}}" />
   <!-- 商圈店铺信息 -->
-  <view class="result-title font-bold">商圈店铺信息</view>
+  <view class="result-title font-bold df jc-between">
+    <text>商圈店铺信息</text>
+    <view class="compare df ai-center">
+      <z-switch checked="{{checked}}" bind:switch="onSwitch" />
+      <text class="compare-tip">是否比较店铺</text>
+    </view>
+  </view>
+
   <mp-form id="form" rules="{{rules}}" models="{{formData}}">
     <checkbox-group class="relation"  bindchange="checkboxChange">
       <label wx:for="{{checkboxItems}}" wx:key="{{item.rest_id}}" class="relation-item">

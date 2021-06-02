@@ -5,6 +5,10 @@
   color: #333;
   line-height: 45rpx;
 }
+.compare-tip {
+  margin-left: 16rpx;
+  font-weight: normal;
+}
 .relation {
   display: block;
   margin: 0 -16rpx;

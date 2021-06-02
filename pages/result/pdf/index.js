@@ -20,7 +20,7 @@ Page({
     paintPallette: null,
     isAuthorize: false,
     watermarkNum: 1,
-    scaleRatio: wx.getSystemInfoSync()['pixelRatio'],
+    scaleRatio: wx.getSystemInfoSync()['pixelRatio'] || 1,
     isSave: false,
     loading: false
   },
@@ -169,6 +169,8 @@ Page({
       "name": options.rest_name,
       "category": options.category
     };
+
+//     // 美团
     const storeDetail = {
       "activities": JSON.parse(options.activities),
       "address": options.address,
@@ -186,6 +188,13 @@ Page({
       "score": options.score,
       "shipping_fee_tip": options.shipping_fee_tip
     };
+    // 饿了么
+    const elemeStoreDetail = {
+      deliveryTime: options.deliveryTime,
+      rest_id: options.rest_id,
+      rest_name: options.rest_name,
+      supportTags: [{}]
+    }
     const platformArray = wx.getStorageSync('platformArray')
     const type = platformArray[options.platformIndex]
     // promise请求数据
@@ -215,12 +224,12 @@ Page({
         this._closeLoading()
       })
     } else {
-      getStoreInfo = user.elemeStoreDetail(data, storeDetail)
+      getStoreInfo = user.elemeStoreDetail(data, elemeStoreDetail)
       Promise.all([getStoreInfo, getDiagnosisList]).then(res => {
         // 获取当前店铺信息
         const storeInfo = res[0]
-        for (let item of storeDetail.supportTags) {
-          storeInfo.activities.push(item.text)
+        for (let item of storeDetail.activities) {
+          storeInfo.activities.push(item)
         }
         this.getStoreInfo(storeInfo)
         // 获取店铺诊断 、商圈容量
@@ -267,9 +276,9 @@ Page({
     const formData = this.data.formData
     const pathData = {
       platformIndex: platformIndex,
-      address: storeInfo.address,
-      latitude: storeInfo.latitude,
-      longitude: storeInfo.longitude,
+      address: storeInfo.address || searchKeys.address,
+      latitude: storeInfo.latitude  || searchKeys.latitude,
+      longitude: storeInfo.longitude  || searchKeys.longitude,
       province: searchKeys.province,
       city: searchKeys.city,
       deliveryMode: storeInfo.deliveryMode,
@@ -301,7 +310,7 @@ Page({
       fail: (res) => {}
     }
   },
-  //item(index,pagePath,text)
+  //item( index,pagePath,text )
   onTabItemTap:function(item){
   }
 });
